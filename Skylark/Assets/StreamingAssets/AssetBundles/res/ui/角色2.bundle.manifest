@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 2769605629
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: a78933e0dfb330a5fbae6dea56cccaf1
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f19fbf085e00d23fbc8d6cf7b345590b
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+Assets:
+- "Assets/Res/UI/\u89D2\u82722.png"
+Dependencies: []

@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 1886317071
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: e8fef3127664cd5f433f094dea66f17f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f19fbf085e00d23fbc8d6cf7b345590b
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+Assets:
+- Assets/Res/UI/BUFF2.png
+Dependencies: []
