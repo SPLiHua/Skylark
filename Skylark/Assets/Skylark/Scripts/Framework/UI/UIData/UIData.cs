@@ -5,6 +5,13 @@ using UnityEngine;
 
 namespace Skylark
 {
+    public enum PanelShowMode
+    {
+        Normal,
+        Pop,
+        HideOther,
+    }
+
     public class UIData
     {
         protected string m_Name;
@@ -83,10 +90,12 @@ namespace Skylark
     public class PanelData : UIData
     {
         public static string PREFIX_PATH = "";
+        public PanelShowMode m_PanelShowMode;
 
-        public PanelData(int id, string name, bool abMode) : base(id, name, abMode)
+        public PanelData(int id, string name, bool abMode, PanelShowMode showMode = PanelShowMode.Normal)
+        : base(id, name, abMode)
         {
-
+            m_PanelShowMode = showMode;
         }
 
         protected override string prefixPath
@@ -108,6 +117,7 @@ namespace Skylark
             s_IsABMode = abMode;
         }
 
+        //目前只开放一个增加数据的函数，不同的T类型转换为int类型需注意大小
         public static void AddPanelData<T>(T uiID, string name) where T : IConvertible
         {
             Add(new PanelData(uiID.ToInt32(null), name, s_IsABMode));

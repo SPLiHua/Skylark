@@ -76,7 +76,15 @@ namespace Skylark
                     {
                         for (int i = m_MaxCount; i < m_CacheStack.Count; i++)
                         {
-                            m_CacheStack.Pop();
+                            GameObject go = m_CacheStack.Pop();
+                            GameObject.DestroyImmediate(go);
+                        }
+                    }
+                    else if (m_MaxCount > m_CacheStack.Count)
+                    {
+                        for (int i = m_CacheStack.Count; i < m_MaxCount; i++)
+                        {
+                            Recycle(CreateNewGameObject());
                         }
                     }
                 }
@@ -93,7 +101,8 @@ namespace Skylark
                     Debug.Log("Pool has no Prefab.");
                     return null;
                 }
-                result = CreateNewGameObject();
+                Recycle(CreateNewGameObject());
+                result = m_CacheStack.Pop();
             }
             else
             {

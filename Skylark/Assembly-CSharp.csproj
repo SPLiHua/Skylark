@@ -99,6 +99,7 @@
      <Compile Include="Assets\Skylark\Scripts\Framework\GameProcess\GamePlayMgr.cs" />
      <Compile Include="Assets\Skylark\Scripts\Framework\Network\NetworkModule.cs" />
      <Compile Include="Assets\Skylark\Scripts\Framework\Network\UrlDefine.cs" />
+     <Compile Include="Assets\Skylark\Scripts\Framework\Network\WebUtility.cs" />
      <Compile Include="Assets\Skylark\Scripts\Framework\ProjectConfig\ProjectPathConfig.cs" />
      <Compile Include="Assets\Skylark\Scripts\Framework\ResSystem\AssetBundleSupport\AssetData.cs" />
      <Compile Include="Assets\Skylark\Scripts\Framework\ResSystem\AssetBundleSupport\AssetDataPackage.cs" />
@@ -132,13 +133,15 @@
      <Compile Include="Assets\Skylark\Scripts\Framework\Singleton\Singleton.cs" />
      <Compile Include="Assets\Skylark\Scripts\Framework\Timer\TimeItem.cs" />
      <Compile Include="Assets\Skylark\Scripts\Framework\Timer\Timer.cs" />
-     <Compile Include="Assets\Skylark\Scripts\Framework\UI\AbstractPanel.cs" />
+     <Compile Include="Assets\Skylark\Scripts\Framework\UI\Panel\AbstractPanel.cs" />
+     <Compile Include="Assets\Skylark\Scripts\Framework\UI\Panel\MaskPanel.cs" />
      <Compile Include="Assets\Skylark\Scripts\Framework\UI\SpritesData\SpritesData.cs" />
      <Compile Include="Assets\Skylark\Scripts\Framework\UI\SpritesData\SpritesHandler.cs" />
      <Compile Include="Assets\Skylark\Scripts\Framework\UI\UIData\UIData.cs" />
      <Compile Include="Assets\Skylark\Scripts\Framework\UI\UIData\UIDataModule.cs" />
      <Compile Include="Assets\Skylark\Scripts\Framework\UI\UIData\UIID.cs" />
      <Compile Include="Assets\Skylark\Scripts\Framework\UI\UIMgr.cs" />
+     <Compile Include="Assets\Skylark\Scripts\Framework\UI\UIType.cs" />
      <Compile Include="Assets\Skylark\Scripts\TestModule.cs" />
      <None Include="Assets\ChickenRes\Shader\Hidden_BlitToDepth_gles3.shader" />
      <None Include="Assets\ChickenRes\Shader\TextMeshPro_Mobile_Bitmap_gles.shader" />

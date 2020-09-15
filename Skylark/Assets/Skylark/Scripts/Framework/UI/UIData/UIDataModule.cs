@@ -23,6 +23,7 @@ namespace Skylark
             UIDataTable.AddPanelData(UIID.Test1Panel, "Test/Test1Panel");
 
             UIDataTable.SetABMode(false);
+            UIDataTable.AddPanelData(UIID.MaskPanel, "Mask/MaskPanel");
             UIDataTable.AddPanelData(UIID.Test2Panel, "Test/Test2Panel");
         }
     }
