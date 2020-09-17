@@ -4,8 +4,48 @@ using UnityEngine;
 
 namespace Skylark
 {
+    public enum ProjectMode
+    {
+        Game, Editor, Test,
+    }
+
     public class AppConfig : ScriptableObject
     {
+        private static AppConfig instance;
+        public static AppConfig S
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = LoadInstance();
+                }
+                return instance;
+            }
+        }
 
+        private static AppConfig LoadInstance()
+        {
+            ResLoader loader = ResLoader.Allocate();
+
+            UnityEngine.Object obj = loader.LoadSync("Resources/Config/AppConfig");
+            if (obj == null)
+            {
+                loader.Recycle2Cache();
+                return null;
+            }
+
+            instance = obj as AppConfig;
+
+            AppConfig newAB = GameObject.Instantiate(instance);
+
+            instance = newAB;
+
+            loader.Recycle2Cache();
+
+            return instance;
+        }
+
+        public ProjectMode projectMode;
     }
 }

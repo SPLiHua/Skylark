@@ -24,6 +24,23 @@ namespace Skylark.Editor
             AssetDatabase.SaveAssets();
         }
 
+        [MenuItem("Assets/Skylark/Config/AppConfig")]
+        public static void BuildAppConfig()
+        {
+            AppConfig data = null;
+            string folderPath = EditorUtils.GetSelectedDirAssetsPath();
+            string spriteDataPath = folderPath + "/AppConfig.asset";
+
+            data = AssetDatabase.LoadAssetAtPath<AppConfig>(spriteDataPath);
+            if (data == null)
+            {
+                data = ScriptableObject.CreateInstance<AppConfig>();
+                AssetDatabase.CreateAsset(data, spriteDataPath);
+            }
+            EditorUtility.SetDirty(data);
+            AssetDatabase.SaveAssets();
+        }
+
         // [MenuItem("Assets/Skylark/Config/DataSavePathConfig")]
         // public static void BuildDataSavePathConfig()
         // {
