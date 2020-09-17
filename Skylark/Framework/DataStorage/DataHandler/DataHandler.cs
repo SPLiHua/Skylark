@@ -26,18 +26,51 @@ namespace Skylark
             Data.ResetDataDirty();
         }
 
+        /// <summary>
+        /// 根据文件名写入
+        /// </summary>
+        /// <param name="name">文件名</param>
+        public virtual void Write(string name)
+        {
+            if (m_SaveSetting == null)
+                SetSaveSettingDefaultPath(name);
+            m_DataWriter.Write(Data, m_SaveSetting);
+            Data.ResetDataDirty();
+        }
+
         public virtual bool Read()
         {
-            int index;
-            SaveSetting temp = DataSavePathConfig.S.GetSaveSettingPath(typeof(T).FullName, out index);
-            if (temp != null)
-            {
-                m_SaveSetting = temp;
-            }
-            else
+            // int index;
+            // SaveSetting temp = DataSavePathConfig.S.GetSaveSettingPath(typeof(T).FullName, out index);
+            // if (temp != null)
+            // {
+            //     m_SaveSetting = temp;
+            // }
+            // else
             if (m_SaveSetting == null)
                 SetSaveSettingDefaultPath(typeof(T).FullName);
 
+            bool bReadSuccess = m_DataReader.Read(ref Data, m_SaveSetting);
+            if (Data == null)
+            {
+                Data = new T();
+                Data.InitWithEmptyData();
+                Data.SetDirty();
+            }
+            Data.SetRecorder(new DataDirtyRecorder());
+            Data.OnDataLoadFinish();
+            return bReadSuccess;
+        }
+
+        /// <summary>
+        /// 根据文件名读取
+        /// </summary>
+        /// <param name="name">文件名</param>
+        /// <returns></returns>
+        public virtual bool Read(string name)
+        {
+            if (m_SaveSetting == null)
+                SetSaveSettingDefaultPath(name);
             bool bReadSuccess = m_DataReader.Read(ref Data, m_SaveSetting);
             if (Data == null)
             {
@@ -66,9 +99,9 @@ namespace Skylark
                 DataSavePathConfig.S.saveSettingList.Add(m_SaveSetting);
         }
 
-        public void SetSaveSettingDefaultPath(string name)
+        public void SetSaveSettingDefaultPath(string name, EncryptType eEncryptType = EncryptType.AES)
         {
-            m_SaveSetting = new SaveSetting(name);
+            m_SaveSetting = new SaveSetting(name, eEncryptType);
         }
 
         public void SetAutoSave()

@@ -11,6 +11,7 @@ namespace Skylark
         private GameObject m_Prefab;
         private int m_MaxCount = 10;
         private Stack<GameObject> m_CacheStack;
+        private List<GameObject> m_AllCacheList;
         private IGameObjectPoolStrategy m_Strategy;
 
         public void InitPool(string name, GameObject prefab, Transform parentTrans, int maxCount, int initCount, IGameObjectPoolStrategy strategy = null)
@@ -110,6 +111,7 @@ namespace Skylark
 
             }
             m_Strategy.OnAllcate(result);
+            result.SetActive(true);
             return result;
         }
 
@@ -138,6 +140,17 @@ namespace Skylark
             m_CacheStack.Push(go);
         }
 
+        public void RecycleAll()
+        {
+            if (m_AllCacheList == null)
+                return;
+
+            foreach (var item in m_AllCacheList)
+            {
+                Recycle(item);
+            }
+        }
+
         public void RemoveAllObject(bool destroySelf, bool destoryPrefab)
         {
             if (destoryPrefab && m_Prefab != null)
@@ -156,16 +169,25 @@ namespace Skylark
                 {
                     m_CacheStack.Clear();
                 }
+                if (m_AllCacheList != null)
+                {
+                    m_AllCacheList.Clear();
+                }
                 return;
             }
             if (m_CacheStack == null || m_CacheStack.Count == 0)
                 return;
-            GameObject next = null;
-            while (m_CacheStack.Count > 0)
+            // GameObject next = null;
+            // while (m_CacheStack.Count > 0)
+            // {
+            //     next = m_CacheStack.Pop();
+            //     GameObject.Destroy(next);
+            // }
+            foreach (var item in m_AllCacheList)
             {
-                next = m_CacheStack.Pop();
-                GameObject.Destroy(next);
+                GameObject.Destroy(item);
             }
+            m_AllCacheList.Clear();
         }
 
         private GameObject CreateNewGameObject()
@@ -173,6 +195,10 @@ namespace Skylark
             if (m_Prefab == null)
                 return null;
             GameObject gameObject = GameObject.Instantiate(m_Prefab, m_Root, true) as GameObject;
+            if (m_AllCacheList == null)
+                m_AllCacheList = new List<GameObject>();
+
+            m_AllCacheList.Add(gameObject);
             return gameObject;
         }
     }

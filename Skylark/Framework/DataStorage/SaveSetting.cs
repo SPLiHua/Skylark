@@ -38,12 +38,12 @@ namespace Skylark
         public EncryptType EncryptType;
         public bool BAysn;
 
-        public SaveSetting(string dataName)
+        public SaveSetting(string dataName, EncryptType encryptType = EncryptType.AES)
         {
             DataName = dataName;
             BAutoSave = false;
             SaveType = SaveType.Json;
-            EncryptType = EncryptType.AES;
+            EncryptType = encryptType;
             BAysn = false;
         }
 
