@@ -5,6 +5,7 @@ using UnityEngine;
 using System;
 using System.Text;
 using LitJson;
+using Newtonsoft.Json;
 
 namespace Skylark
 {
@@ -40,7 +41,7 @@ namespace Skylark
             string jsonValue = null;
             try
             {
-                jsonValue = JsonMapper.ToJson(t);
+                jsonValue = JsonConvert.SerializeObject(t);
                 switch (saveSetting.EncryptType)
                 {
                     case EncryptType.None:

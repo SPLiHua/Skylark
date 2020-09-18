@@ -9,7 +9,7 @@ namespace Skylark
     {
         protected IDataWriter<T> m_DataWriter;
         protected IDataReader<T> m_DataReader;
-        public static T Data;
+        public static T Data = new T();
         public SaveSetting m_SaveSetting;
 
         public virtual void Init()

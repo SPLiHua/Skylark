@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 using LitJson;
+using Newtonsoft.Json;
 
 namespace Skylark
 {
@@ -90,7 +91,7 @@ namespace Skylark
                             break;
                     }
 
-                    t = JsonMapper.ToObject<T>(context);
+                    t = JsonConvert.DeserializeObject<T>(context);
                     Debug.Log(string.Format("{0}:{1}", t.GetType().Name, "读取成功"));
                 }
                 catch (Exception e)
