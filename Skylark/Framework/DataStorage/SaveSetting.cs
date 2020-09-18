@@ -18,44 +18,38 @@ namespace Skylark
     public class SaveSetting
     {
         public string DataName;
-        public string PersistentDataPath
-        {
-            get
-            {
-                return string.Format("{0}/{1}.json", Application.persistentDataPath, DataName);
-            }
-        }
-        public string StreamingAssetsPath
-        {
-            get
-            {
-                return string.Format("{0}/{1}.json", Application.streamingAssetsPath, DataName);
-            }
-        }
         public string DataPath;
         public bool BAutoSave;
         public SaveType SaveType;
         public EncryptType EncryptType;
         public bool BAysn;
 
-        public SaveSetting(string dataName, EncryptType encryptType = EncryptType.AES)
+        public SaveSetting(string dataName, string path, EncryptType encryptType = EncryptType.AES)
         {
             DataName = dataName;
             BAutoSave = false;
             SaveType = SaveType.Json;
             EncryptType = encryptType;
             BAysn = false;
+            if (string.IsNullOrEmpty(path))
+            {
+                DataPath = Application.streamingAssetsPath;
+            }
+            else
+            {
+                DataPath = path;
+            }
         }
 
-        public SaveSetting(string dataName, string dataPath, bool autoSave = true, SaveType saveType = SaveType.Json,
-         EncryptType encrypyType = EncryptType.AES, bool bAysn = false)
-        {
-            DataName = dataName;
-            DataPath = dataPath;
-            BAutoSave = autoSave;
-            SaveType = saveType;
-            EncryptType = encrypyType;
-            BAysn = bAysn;
-        }
+        // public SaveSetting(string dataName, string dataPath, bool autoSave = true, SaveType saveType = SaveType.Json,
+        //  EncryptType encrypyType = EncryptType.AES, bool bAysn = false)
+        // {
+        //     DataName = dataName;
+        //     DataPath = dataPath;
+        //     BAutoSave = autoSave;
+        //     SaveType = saveType;
+        //     EncryptType = encrypyType;
+        //     BAysn = bAysn;
+        // }
     }
 }

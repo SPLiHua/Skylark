@@ -48,10 +48,7 @@ namespace Skylark
         public bool Read(ref T t, SaveSetting saveSetting)
         {
             FileInfo fileInfo;
-            if (!string.IsNullOrEmpty(saveSetting.DataPath))
-                fileInfo = new FileInfo(saveSetting.DataPath);
-            else
-                fileInfo = new FileInfo(saveSetting.PersistentDataPath);
+            fileInfo = new FileInfo(string.Format("{0}/{1}.json", saveSetting.DataPath, saveSetting.DataName));
 
             if (!fileInfo.Exists)
             {

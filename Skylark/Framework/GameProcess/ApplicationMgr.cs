@@ -10,6 +10,7 @@ namespace Skylark
         {
             //DOTween.Init(false, true, LogBehaviour.ErrorsOnly);
             //DOTween.defaultEaseType = Ease.Linear;
+            ResMgr.S.Init();
             InitSDK();
         }
 
@@ -30,7 +31,6 @@ namespace Skylark
         {
             NetworkModule.S.Init();
             GameDataMgr.S.Init();
-            ResMgr.S.Init();
             GamePlayMgr.S.Init();
         }
     }

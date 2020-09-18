@@ -9,9 +9,8 @@ namespace Skylark
     {
         public void Init()
         {
-            //test
-            TestModule testModule = new TestModule();
-            testModule.TestTimer();
+            StageResFactory.S.Init();
+            GameStageMgr.S.CreateStage(1);
         }
     }
 }

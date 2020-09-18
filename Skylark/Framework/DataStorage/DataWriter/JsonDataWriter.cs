@@ -58,14 +58,19 @@ namespace Skylark
             }
 
             FileInfo fileInfo;
-            if (!string.IsNullOrEmpty(saveSetting.DataPath))
-                fileInfo = new FileInfo(saveSetting.DataPath);
-            else
-                fileInfo = new FileInfo(saveSetting.PersistentDataPath);
+            fileInfo = new FileInfo(string.Format("{0}/{1}.json", saveSetting.DataPath, saveSetting.DataName));
 
+            if (!Directory.Exists(saveSetting.DataPath))
+            {
+                Directory.CreateDirectory(saveSetting.DataPath);
+            }
             if (fileInfo.Exists)
             {
                 fileInfo.Delete();
+            }
+            else
+            {
+                fileInfo.Create().Dispose();
             }
             using (FileStream fs = fileInfo.OpenWrite())
             {
@@ -74,6 +79,28 @@ namespace Skylark
                 fs.Flush();
                 Debug.Log(string.Format("{0}:{1}", t.GetType().Name, "写入成功"));
             }
+
+#if UNITY_EDITOR
+            #region //保险起见，persistentDataPath路径也做存储
+            FileInfo fileInfo1;
+            fileInfo1 = new FileInfo(string.Format("{0}/{1}.json", Application.persistentDataPath, saveSetting.DataName));
+
+            if (fileInfo1.Exists)
+            {
+                fileInfo1.Delete();
+            }
+            else
+            {
+                fileInfo1.Create().Dispose();
+            }
+            using (FileStream fs = fileInfo1.OpenWrite())
+            {
+                byte[] writeDataArray = UTF8Encoding.UTF8.GetBytes(jsonValue);
+                fs.Write(writeDataArray, 0, writeDataArray.Length);
+                fs.Flush();
+            }
+            #endregion
+#endif
         }
 
         public void WriteAsyn(T t)
