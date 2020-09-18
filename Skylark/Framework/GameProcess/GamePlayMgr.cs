@@ -10,6 +10,8 @@ namespace Skylark
         public void Init()
         {
             StageResFactory.S.Init();
+            GameStageMgr.S.Init();
+            //测试用
             GameStageMgr.S.CreateStage(1);
         }
     }

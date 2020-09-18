@@ -7,15 +7,19 @@ namespace Skylark
     public class GameDataMgr : Singleton<GameDataMgr>
     {
         public StageDataHandler m_StageDataHandler;
+        public PlayerDataHandler m_PlayerDataHandler;
+
 
         public void Init()
         {
             m_StageDataHandler = new StageDataHandler();
+            m_PlayerDataHandler = new PlayerDataHandler();
+            m_PlayerDataHandler.Init();
         }
 
     }
 
-    public class GameDataHandler : JsonDataHandler<GameData>
+    public class PlayerDataHandler : JsonDataHandler<PlayerData>
     {
 
     }

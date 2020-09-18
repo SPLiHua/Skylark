@@ -33,7 +33,7 @@ namespace Skylark
             BAysn = false;
             if (string.IsNullOrEmpty(path))
             {
-                DataPath = Application.streamingAssetsPath;
+                DataPath = Application.persistentDataPath;
             }
             else
             {

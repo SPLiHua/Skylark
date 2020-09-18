@@ -10,5 +10,14 @@ namespace Skylark
         {
             Debug.LogFormat("Init[{0}]", ApplicationMgr.S.GetType().Name);
         }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                GameStageMgr.S.Reset();
+                GameStageMgr.S.CreateStage(5);
+            }
+        }
     }
 }
