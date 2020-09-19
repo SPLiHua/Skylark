@@ -135,6 +135,10 @@ namespace Skylark
             }
             if (itemComponent != null)
                 itemComponent.OnReset2Cache();
+            if (go.GetComponent<ICacheAble>() != null)
+            {
+                go.GetComponent<ICacheAble>().OnCacheReset();
+            }
             go.transform.SetParent(m_Root, true);
             go.SetActive(false);  //某些情况不需要处理这步
             m_CacheStack.Push(go);
