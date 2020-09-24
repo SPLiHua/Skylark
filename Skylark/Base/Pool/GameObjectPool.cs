@@ -36,7 +36,6 @@ namespace Skylark
 
             m_Strategy = strategy;
             if (m_Strategy == null)
-
                 m_Strategy = DefaultPoolStrategy.S;
             m_Strategy.ProcessContainer(container);
             GameObject.DestroyImmediate(container);
@@ -108,8 +107,11 @@ namespace Skylark
             else
             {
                 result = m_CacheStack.Pop();
-
             }
+            if (m_AllCacheList == null)
+                m_AllCacheList = new List<GameObject>();
+
+            m_AllCacheList.Add(result);
             m_Strategy.OnAllcate(result);
             result.SetActive(true);
             return result;
@@ -141,7 +143,8 @@ namespace Skylark
             }
             go.transform.SetParent(m_Root, true);
             go.SetActive(false);  //某些情况不需要处理这步
-            m_CacheStack.Push(go);
+            if (!m_CacheStack.Contains(go))
+                m_CacheStack.Push(go);
         }
 
         public void RecycleAll()
@@ -199,10 +202,7 @@ namespace Skylark
             if (m_Prefab == null)
                 return null;
             GameObject gameObject = GameObject.Instantiate(m_Prefab, m_Root, true) as GameObject;
-            if (m_AllCacheList == null)
-                m_AllCacheList = new List<GameObject>();
 
-            m_AllCacheList.Add(gameObject);
             return gameObject;
         }
     }
