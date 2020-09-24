@@ -7,5 +7,6 @@ namespace Skylark
     public class GamePath
     {
         public static string StageSavePath = Application.streamingAssetsPath + "/Stages";
+        public static string StageReadPath = Application.dataPath + "/Stages";
     }
 }

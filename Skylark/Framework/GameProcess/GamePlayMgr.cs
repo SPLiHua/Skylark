@@ -12,8 +12,6 @@ namespace Skylark
             AppConfig.S.projectMode = ProjectMode.Game;
             StageResFactory.S.Init();
             GameStageMgr.S.Init();
-            //测试用
-            GameStageMgr.S.CreateStage(1);
         }
     }
 }

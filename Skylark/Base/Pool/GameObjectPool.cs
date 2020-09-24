@@ -156,6 +156,7 @@ namespace Skylark
             {
                 Recycle(item);
             }
+            m_AllCacheList.Clear();
         }
 
         public void RemoveAllObject(bool destroySelf, bool destoryPrefab)
