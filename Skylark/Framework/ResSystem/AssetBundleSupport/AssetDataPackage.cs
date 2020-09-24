@@ -204,7 +204,6 @@ namespace Skylark
             SerializeData sd = GetSerializeData();
 
             string outPath = string.Format("{0}{1}/{2}", outFolder, m_Key, ProjectPathConfig.abConfigfileName);
-
             if (SerializeHelper.SerializeBinary(outPath, sd))
             {
                 Debug.Log("Success Save AssetDataTable:" + outPath);

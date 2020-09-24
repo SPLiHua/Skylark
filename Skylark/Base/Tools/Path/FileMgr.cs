@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
-//using ICSharpCode.SharpZipLib.Zip;
+using ICSharpCode.SharpZipLib.Zip;
 
 namespace Skylark
 {
@@ -9,15 +9,35 @@ namespace Skylark
     {
         private List<string> m_SearchDirList = new List<string>();
         private string m_StreamingAssetsPath;
+        private ZipFile m_ZipFile = null;
+
+        ~FileMgr()
+        {
+#if UNITY_ANDROID && !UNITY_EDITOR
+        if (m_ZipFile != null)
+        {
+            m_ZipFile.Close();
+            m_ZipFile = null;
+        }
+#endif
+        }
+
 
         public override void OnSingletonInit()
         {
-            m_StreamingAssetsPath = Application.streamingAssetsPath;
             m_SearchDirList.Add(FilePath.persistentDataPath4Res);
+            m_StreamingAssetsPath = FilePath.streamingAssetsPath;
+#if (UNITY_ANDROID) && !UNITY_EDITOR
+            if (m_ZipFile == null)
+            {
+                m_ZipFile = new ZipFile(File.Open(Application.dataPath, FileMode.Open, FileAccess.Read));
+            }
+#endif
         }
 
         public void InitStreamingAssetPath()
         {
+            m_StreamingAssetsPath = FilePath.streamingAssetsPath;
         }
 
         //在包内查找是否有改资源
@@ -215,78 +235,78 @@ namespace Skylark
         }
 
 
-        // private Stream OpenStreamInZip(string absPath)
-        // {
-        //     string tag = "!/assets/";
-        //     string androidFolder = absPath.Substring(0, absPath.IndexOf(tag));
+        private Stream OpenStreamInZip(string absPath)
+        {
+            string tag = "!/assets/";
+            string androidFolder = absPath.Substring(0, absPath.IndexOf(tag));
 
-        //     int startIndex = androidFolder.Length + tag.Length;
-        //     string relativePath = absPath.Substring(startIndex, absPath.Length - startIndex);
+            int startIndex = androidFolder.Length + tag.Length;
+            string relativePath = absPath.Substring(startIndex, absPath.Length - startIndex);
 
-        //     ZipEntry zipEntry = m_ZipFile.GetEntry(string.Format("assets/{0}", relativePath));
+            ZipEntry zipEntry = m_ZipFile.GetEntry(string.Format("assets/{0}", relativePath));
 
-        //     if (zipEntry != null)
-        //     {
-        //         return m_ZipFile.GetInputStream(zipEntry);
-        //     }
-        //     else
-        //     {
-        //         Log.e(string.Format("Can't Find File {0}", absPath));
-        //     }
+            if (zipEntry != null)
+            {
+                return m_ZipFile.GetInputStream(zipEntry);
+            }
+            else
+            {
+                //Log.e(string.Format("Can't Find File {0}", absPath));
+            }
 
-        //     return null;
-        // }
+            return null;
+        }
 
-        // public void GetFileInZip(ZipFile zipFile, string fileName, List<string> outResult)
-        // {
-        //     int totalCount = 0;
+        public void GetFileInZip(ZipFile zipFile, string fileName, List<string> outResult)
+        {
+            int totalCount = 0;
 
-        //     foreach (var entry in zipFile)
-        //     {
-        //         ++totalCount;
-        //         ICSharpCode.SharpZipLib.Zip.ZipEntry e = entry as ICSharpCode.SharpZipLib.Zip.ZipEntry;
-        //         if (e != null)
-        //         {
-        //             if (e.IsFile)
-        //             {
-        //                 if (e.Name.EndsWith(fileName))
-        //                 {
-        //                     outResult.Add(zipFile.Name + "/!/" + e.Name);
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
+            foreach (var entry in zipFile)
+            {
+                ++totalCount;
+                ICSharpCode.SharpZipLib.Zip.ZipEntry e = entry as ICSharpCode.SharpZipLib.Zip.ZipEntry;
+                if (e != null)
+                {
+                    if (e.IsFile)
+                    {
+                        if (e.Name.EndsWith(fileName))
+                        {
+                            outResult.Add(zipFile.Name + "/!/" + e.Name);
+                        }
+                    }
+                }
+            }
+        }
 
 
-        // private byte[] ReadDataInAndriodApk(string fileRelativePath)
-        // {
-        //     byte[] byteData = null;
-        //     //Log.i("Read From In App...");
-        //     if (m_ZipFile == null)
-        //     {
-        //         Log.e("can't open apk");
-        //         return null;
-        //     }
+        private byte[] ReadDataInAndriodApk(string fileRelativePath)
+        {
+            byte[] byteData = null;
+            //Log.i("Read From In App...");
+            if (m_ZipFile == null)
+            {
+                //Log.e("can't open apk");
+                return null;
+            }
 
-        //     //Log.i("Begin Open Zip...");
-        //     ZipEntry zipEntry = m_ZipFile.GetEntry(string.Format("assets/{0}", fileRelativePath));
-        //     //Log.i("End Open Zip...");
-        //     if (zipEntry != null)
-        //     {
-        //         //Log.i("Begin Read Zip...");
-        //         var stream = m_ZipFile.GetInputStream(zipEntry);
-        //         byteData = new byte[zipEntry.Size];
-        //         //Log.i("Read Zip Length:" + byteData.Length);
-        //         stream.Read(byteData, 0, byteData.Length);
-        //         stream.Close();
-        //     }
-        //     else
-        //     {
-        //         Log.e(string.Format("Can't Find File {0}", fileRelativePath));
-        //     }
+            //Log.i("Begin Open Zip...");
+            ZipEntry zipEntry = m_ZipFile.GetEntry(string.Format("assets/{0}", fileRelativePath));
+            //Log.i("End Open Zip...");
+            if (zipEntry != null)
+            {
+                //Log.i("Begin Read Zip...");
+                var stream = m_ZipFile.GetInputStream(zipEntry);
+                byteData = new byte[zipEntry.Size];
+                //Log.i("Read Zip Length:" + byteData.Length);
+                stream.Read(byteData, 0, byteData.Length);
+                stream.Close();
+            }
+            else
+            {
+                //Log.e(string.Format("Can't Find File {0}", fileRelativePath));
+            }
 
-        //     return byteData;
-        // }
+            return byteData;
+        }
     }
 }
