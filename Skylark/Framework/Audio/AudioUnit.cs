@@ -52,7 +52,12 @@ namespace Skylark
             private set { m_ID = value; }
         }
 
-        public bool cacheFlag { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        private bool m_CacheFlag;
+        public bool cacheFlag
+        {
+            get { return m_CacheFlag; }
+            set { m_CacheFlag = value; }
+        }
 
         public static AudioUnit Allocate()
         {
@@ -360,12 +365,19 @@ namespace Skylark
 
         public void OnCacheReset()
         {
-            throw new System.NotImplementedException();
+            CleanResources();
         }
 
         public void Recycle2Cache()
         {
-            throw new System.NotImplementedException();
+            if (!ObjectPool<AudioUnit>.S.Recycle(this))
+            {
+                if (m_Source != null)
+                {
+                    GameObject.Destroy(m_Source);
+                    m_Source = null;
+                }
+            }
         }
     }
 }

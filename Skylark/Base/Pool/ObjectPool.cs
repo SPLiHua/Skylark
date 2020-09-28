@@ -47,7 +47,10 @@ namespace Skylark
             get
             {
                 if (m_CacheStack == null)
+                {
+                    m_CacheStack = new Stack<T>();
                     return 0;
+                }
                 return m_CacheStack.Count;
             }
         }

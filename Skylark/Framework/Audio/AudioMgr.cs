@@ -118,7 +118,7 @@ namespace Skylark
             return unit.id;
         }
 
-        public int PlaySoundShoot(string name)
+        public int PlaySoundShot(string name)
         {
             if (m_SingletonSoundMap.ContainsKey(name))
             {
