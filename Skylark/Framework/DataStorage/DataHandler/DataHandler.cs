@@ -51,7 +51,7 @@ namespace Skylark
                 SetSaveSetting(typeof(T).FullName);
 
             bool bReadSuccess = m_DataReader.Read(ref Data, m_SaveSetting);
-            if (Data == null)
+            if (!bReadSuccess)
             {
                 Data = new T();
                 Data.InitWithEmptyData();
