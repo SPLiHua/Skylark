@@ -9,6 +9,7 @@ namespace Skylark
     {
         public void Init()
         {
+            UIMgr.S.OpenPanel(UIID.PopItemPanel);
             AppConfig.S.projectMode = ProjectMode.Game;
             StageResFactory.S.Init();
             GameStageMgr.S.Init();

@@ -7,7 +7,8 @@ namespace Skylark
     public enum UIID
     {
         MaskPanel,
-        Test1Panel,
-        Test2Panel,
+
+        //CubSurfer
+        PopItemPanel,
     }
 }

@@ -118,9 +118,9 @@ namespace Skylark
         }
 
         //目前只开放一个增加数据的函数，不同的T类型转换为int类型需注意大小
-        public static void AddPanelData<T>(T uiID, string name) where T : IConvertible
+        public static void AddPanelData<T>(T uiID, string name, PanelShowMode showMode = PanelShowMode.Normal) where T : IConvertible
         {
-            Add(new PanelData(uiID.ToInt32(null), name, s_IsABMode));
+            Add(new PanelData(uiID.ToInt32(null), name, s_IsABMode, showMode));
         }
 
         private static void Add(UIData data)

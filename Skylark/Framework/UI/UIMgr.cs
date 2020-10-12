@@ -10,14 +10,13 @@ namespace Skylark
         private Dictionary<UIID, AbstractPanel> m_AllPanelMap = new Dictionary<UIID, AbstractPanel>();
         private Dictionary<UIID, AbstractPanel> m_CurrentShowMap = new Dictionary<UIID, AbstractPanel>();
         private Stack<AbstractPanel> m_PopStack = new Stack<AbstractPanel>();
-        private Transform m_NormalUIParentTrans;
-        private Transform m_PopUIParentTrans;
-
+        private UIRoot m_UIRoot;
         ResLoader m_UILoader;
 
         public override void OnSingletonInit()
         {
             m_UILoader = ResLoader.Allocate();
+            m_UIRoot = GameObject.FindObjectOfType<UIRoot>();
         }
 
         #region //公共方法
@@ -69,7 +68,7 @@ namespace Skylark
                             }
                             break;
                         case PanelShowMode.HideOther:
-                            m_PopUIParentTrans.gameObject.SetActive(true);
+                            m_UIRoot.PopRoot.gameObject.SetActive(true);
                             break;
                     }
                 }
@@ -114,18 +113,20 @@ namespace Skylark
                 switch (panel.ShowMode)
                 {
                     case PanelShowMode.Normal:
-                        panelGo.transform.SetParent(m_NormalUIParentTrans);
+                        panelGo.transform.SetParent(m_UIRoot.NormalRoot);
                         break;
                     case PanelShowMode.Pop:
-                        panelGo.transform.SetParent(m_PopUIParentTrans);
+                        panelGo.transform.SetParent(m_UIRoot.PopRoot);
                         break;
                     case PanelShowMode.HideOther:
-                        panelGo.transform.SetParent(m_NormalUIParentTrans);
+                        panelGo.transform.SetParent(m_UIRoot.NormalRoot);
                         break;
                 }
 
-                // panelGo.transform.localPosition = Vector2.zero;
-                // panelGo.transform.localScale = Vector2.one;
+                //panelGo.transform.localPosition = Vector2.zero;
+                //panelGo.transform.localScale = Vector2.one;
+                panelGo.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
+                panelGo.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
                 m_AllPanelMap.Add(uiID, panel);
                 panel.uiID = uiID;
                 return panel;
@@ -169,7 +170,7 @@ namespace Skylark
             // }
 
             //todo 层级最高
-            m_PopUIParentTrans.gameObject.SetActive(false);
+            m_UIRoot.NormalRoot.gameObject.SetActive(false);
         }
 
         public void UpdatePanelSibling(int index)

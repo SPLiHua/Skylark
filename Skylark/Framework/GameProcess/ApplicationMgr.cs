@@ -29,6 +29,7 @@ namespace Skylark
 
         protected override void StartGame()
         {
+            UIDataModule.S.Init();
             NetworkModule.S.Init();
             GameDataMgr.S.Init();
             GamePlayMgr.S.Init();
