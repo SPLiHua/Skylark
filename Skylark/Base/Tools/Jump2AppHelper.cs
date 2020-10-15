@@ -1,5 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Mail;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class Jump2AppHelper
@@ -58,5 +62,30 @@ public class Jump2AppHelper
             }
         }
         return false;
+    }
+}
+
+public class SendEmailHelper
+{
+    public static void SendEmail(string subject, string body)
+    {
+        MailMessage mail = new MailMessage();
+
+        //替换邮箱地址,需要开通邮箱的 smtp 服务
+        mail.From = new MailAddress("420418819@qq.com");
+        mail.To.Add("420418819@qq.com");
+        mail.Subject = subject;
+        mail.Body = body;
+        //mail.Attachments.Add(new Attachment("screen.png"));
+
+        SmtpClient smtpServer = new SmtpClient("smtp.qq.com");
+        smtpServer.Credentials = new System.Net.NetworkCredential("420418819@qq.com", "rvcdmyfrfonebhie") as ICredentialsByHost;
+        smtpServer.EnableSsl = true;
+        ServicePointManager.ServerCertificateValidationCallback =
+            delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+            { return true; };
+
+        smtpServer.Send(mail);
+        Debug.Log("send email success");
     }
 }
