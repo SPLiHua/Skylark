@@ -20,7 +20,7 @@ namespace Skylark
         private void RegisterAllPanel()
         {
             UIDataTable.SetABMode(true);
-            UIDataTable.AddPanelData(UIID.PopItemPanel, "UI/PopItem/PopItemPanel");
+            UIDataTable.AddPanelData(UIID.GamingPanel, "UI/Gaming/GamingPanel");
 
             UIDataTable.SetABMode(false);
             UIDataTable.AddPanelData(UIID.MaskPanel, "UI/Mask/MaskPanel");

@@ -9,6 +9,6 @@ namespace Skylark
         MaskPanel,
 
         //CubSurfer
-        PopItemPanel,
+        GamingPanel,
     }
 }
