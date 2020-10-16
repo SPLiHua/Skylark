@@ -10,7 +10,7 @@ namespace Skylark
         private Dictionary<UIID, AbstractPanel> m_AllPanelMap = new Dictionary<UIID, AbstractPanel>();
         private Dictionary<UIID, AbstractPanel> m_CurrentShowMap = new Dictionary<UIID, AbstractPanel>();
         private Stack<AbstractPanel> m_PopStack = new Stack<AbstractPanel>();
-        private UIRoot m_UIRoot;
+        public UIRoot m_UIRoot;
         ResLoader m_UILoader;
 
         public override void OnSingletonInit()
@@ -123,10 +123,11 @@ namespace Skylark
                         break;
                 }
 
-                //panelGo.transform.localPosition = Vector2.zero;
-                //panelGo.transform.localScale = Vector2.one;
                 panelGo.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
                 panelGo.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
+                //panelGo.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                panelGo.transform.localScale = Vector3.one;
+                panelGo.transform.localPosition = Vector3.zero;
                 m_AllPanelMap.Add(uiID, panel);
                 panel.uiID = uiID;
                 return panel;

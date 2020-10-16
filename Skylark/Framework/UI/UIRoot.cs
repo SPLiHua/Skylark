@@ -10,6 +10,8 @@ namespace Skylark
         private Transform m_NormalRoot;
         [SerializeField]
         private Transform m_PopRoot;
+        [SerializeField]
+        private Camera m_UICamera;
 
         public Transform NormalRoot
         {
@@ -23,11 +25,16 @@ namespace Skylark
             set { m_PopRoot = value; }
         }
 
+        public Camera UICamera
+        {
+            get { return m_UICamera; }
+        }
+
         private void Awake()
         {
             if (NormalRoot == null)
             {
-                NormalRoot = transform.Find("NormalRoot");
+                NormalRoot = transform.Find("Canvas/NormalRoot");
                 AbstractPanel[] panels = NormalRoot.GetComponentsInChildren<AbstractPanel>();
                 if (panels != null)
                 {
@@ -39,7 +46,7 @@ namespace Skylark
             }
             if (PopRoot == null)
             {
-                PopRoot = transform.Find("PopRoot");
+                PopRoot = transform.Find("Canvas/PopRoot");
                 AbstractPanel[] panels = PopRoot.GetComponentsInChildren<AbstractPanel>();
                 if (panels != null)
                 {
@@ -48,6 +55,10 @@ namespace Skylark
                         panels[i].gameObject.SetActive(false);
                     }
                 }
+            }
+            if (m_UICamera == null)
+            {
+                m_UICamera = transform.Find("UICamera").GetComponent<Camera>();
             }
         }
     }
