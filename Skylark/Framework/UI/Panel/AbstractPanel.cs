@@ -8,6 +8,11 @@ namespace Skylark
     {
         [SerializeField]
         private SpritesData[] m_SpritesData;
+        public SpritesData[] spritesData
+        {
+            get { return m_SpritesData; }
+            set { m_SpritesData = value; }
+        }
         private SpritesHandler m_SpritesHandler;
 
         protected int m_SiblingIndex;

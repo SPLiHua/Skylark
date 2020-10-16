@@ -163,7 +163,7 @@ namespace Skylark
         {
             if (destoryPrefab && m_Prefab != null)
             {
-                GameObject.Destroy(m_Prefab);
+                GameObject.DestroyImmediate(m_Prefab, true);
                 m_Prefab = null;
             }
             if (destroySelf)

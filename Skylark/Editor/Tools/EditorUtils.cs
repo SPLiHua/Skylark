@@ -41,5 +41,11 @@ namespace Skylark.Editor
 
             return path;
         }
+
+        public static string ABSPath2AssetsPath(string absPath)
+        {
+            string assetRootPath = System.IO.Path.GetFullPath(Application.dataPath);
+            return "Assets" + System.IO.Path.GetFullPath(absPath).Substring(assetRootPath.Length).Replace("\\", "/");
+        }
     }
 }

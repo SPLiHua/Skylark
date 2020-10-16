@@ -28,10 +28,26 @@ namespace Skylark
             if (NormalRoot == null)
             {
                 NormalRoot = transform.Find("NormalRoot");
+                AbstractPanel[] panels = NormalRoot.GetComponentsInChildren<AbstractPanel>();
+                if (panels != null)
+                {
+                    for (int i = 0; i < panels.Length; i++)
+                    {
+                        panels[i].gameObject.SetActive(false);
+                    }
+                }
             }
             if (PopRoot == null)
             {
                 PopRoot = transform.Find("PopRoot");
+                AbstractPanel[] panels = PopRoot.GetComponentsInChildren<AbstractPanel>();
+                if (panels != null)
+                {
+                    for (int i = 0; i < panels.Length; i++)
+                    {
+                        panels[i].gameObject.SetActive(false);
+                    }
+                }
             }
         }
     }
