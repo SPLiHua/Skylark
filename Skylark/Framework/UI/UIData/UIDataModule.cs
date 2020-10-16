@@ -21,6 +21,9 @@ namespace Skylark
         {
             UIDataTable.SetABMode(true);
             UIDataTable.AddPanelData(UIID.GamingPanel, "UI/Gaming/GamingPanel");
+            UIDataTable.AddPanelData(UIID.ShopPanel, "UI/Shop/ShopPanel");
+            UIDataTable.AddPanelData(UIID.OfflinePanel, "UI/Offline/OfflinePanel");
+            UIDataTable.AddPanelData(UIID.LosePanel, "UI/Lose/LosePanel");
 
             UIDataTable.SetABMode(false);
             UIDataTable.AddPanelData(UIID.MaskPanel, "UI/Mask/MaskPanel");

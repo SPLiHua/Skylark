@@ -10,5 +10,8 @@ namespace Skylark
 
         //CubSurfer
         GamingPanel,
+        ShopPanel,
+        OfflinePanel,
+        LosePanel,
     }
 }
