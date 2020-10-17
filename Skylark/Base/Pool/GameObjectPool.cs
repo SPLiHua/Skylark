@@ -168,6 +168,11 @@ namespace Skylark
             }
             if (destroySelf)
             {
+                foreach (var item in m_AllCacheList)
+                {
+                    GameObject.Destroy(item);
+                }
+                m_AllCacheList.Clear();
                 if (m_Root != null)
                 {
                     GameObject.Destroy(m_Root.gameObject);
@@ -191,11 +196,6 @@ namespace Skylark
             //     next = m_CacheStack.Pop();
             //     GameObject.Destroy(next);
             // }
-            foreach (var item in m_AllCacheList)
-            {
-                GameObject.Destroy(item);
-            }
-            m_AllCacheList.Clear();
         }
 
         private GameObject CreateNewGameObject()

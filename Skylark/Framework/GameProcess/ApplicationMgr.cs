@@ -25,6 +25,7 @@ namespace Skylark
             Application.targetFrameRate = 60;
             QualitySettings.vSyncCount = 0;
             Screen.sleepTimeout = SleepTimeout.NeverSleep;
+            Screen.orientation = ScreenOrientation.Portrait;
         }
 
         protected override void StartGame()
