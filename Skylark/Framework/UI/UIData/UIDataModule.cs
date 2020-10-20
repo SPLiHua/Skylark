@@ -24,9 +24,12 @@ namespace Skylark
             UIDataTable.AddPanelData(UIID.ShopPanel, "UI/Shop/ShopPanel");
             UIDataTable.AddPanelData(UIID.OfflinePanel, "UI/Offline/OfflinePanel");
             UIDataTable.AddPanelData(UIID.LosePanel, "UI/Lose/LosePanel");
+            UIDataTable.AddPanelData(UIID.WinPanel, "UI/Win/WinPanel");
+            UIDataTable.AddPanelData(UIID.BalloonPanel, "UI/Balloon/BalloonPanel");
 
             UIDataTable.SetABMode(false);
-            UIDataTable.AddPanelData(UIID.MaskPanel, "UI/Mask/MaskPanel");
+            UIDataTable.AddPanelData(UIID.MaskPanel, "UI/MaskPanel/MaskPanel");
+            UIDataTable.AddPanelData(UIID.FloatMessagePanel, "UI/FloatMessagePanel/FloatMessagePanel", PanelShowMode.Pop);
         }
     }
 }

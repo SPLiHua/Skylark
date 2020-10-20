@@ -7,11 +7,14 @@ namespace Skylark
     public enum UIID
     {
         MaskPanel,
+        FloatMessagePanel,
 
         //CubSurfer
         GamingPanel,
         ShopPanel,
         OfflinePanel,
         LosePanel,
+        WinPanel,
+        BalloonPanel,
     }
 }
