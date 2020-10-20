@@ -33,7 +33,7 @@ namespace Skylark
                 if (handler != null)
                 {
                     handler.Init(adapterConfig.adParamsList[i]);
-                    ADMgr.S.RegisterADHandler2Interface(adapterConfig.adParamsList[i].adInterfaceGroup, handler);
+                    ADMgr.S.RegisterADHandler2Interface(adapterConfig.adParamsList[i].adInterfaceGroup, handler, adapterConfig.adParamsList[i].adType);
                 }
             }
         }

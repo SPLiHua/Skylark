@@ -25,7 +25,7 @@ namespace Skylark
         private void InitSupportedAdapter(SDKConfig sdkConfig)
         {
             //添加adapter
-            //RegisterAdapter(sdkConfig.adsConfig.mopubAdsConfig);
+            RegisterAdapter(sdkConfig.adsConfig.mopubAdsConfig);
         }
 
         private bool RegisterAdapter(SDKAdapterConfig adapterConfig)
@@ -86,7 +86,7 @@ namespace Skylark
             }
         }
 
-        public void RegisterADHandler2Interface(ADGroup groupName, ADHandler handler)
+        public void RegisterADHandler2Interface(ADGroup groupName, ADHandler handler, ADType adType)
         {
             if (!m_ADHandlerList.Contains(handler))
                 m_ADHandlerList.Add(handler);
@@ -97,7 +97,32 @@ namespace Skylark
                 adInterface.RegisterHandler(handler);
             }
             else
-                Debug.Log("No suit ADInterface.");
+            {
+                switch (adType)
+                {
+                    case ADType.Banner:
+                        adInterface = new ADBannerInterface();
+                        break;
+                    case ADType.Interstitial:
+                        adInterface = new ADInterstitialInterface();
+                        break;
+                    case ADType.Reward:
+                        adInterface = new ADInterstitialInterface();
+                        break;
+                    default:
+                        break;
+                }
+                if (adInterface != null)
+                {
+                    adInterface.Init(groupName);
+                    m_ADInterfaceGroupDict.Add(groupName, adInterface);
+                    adInterface.RegisterHandler(handler);
+                }
+                else
+                {
+                    Debug.Log("No suit ADInterface.");
+                }
+            }
 
             //test
             // foreach (var item in m_ADInterfaceGroupDict.Values)

@@ -8,6 +8,6 @@ namespace Skylark
     public class AdsConfig
     {
         public bool isEnable = true;
-        //public MopubAdsConfig mopubAdsConfig;
+        public MopubAdsConfig mopubAdsConfig;
     }
 }
