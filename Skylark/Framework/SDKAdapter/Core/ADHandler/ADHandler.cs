@@ -71,8 +71,6 @@ namespace Skylark
         #region  //回调事件
         protected void HandleOnADLoaded(string adUnitId, float height)
         {
-            Debug.Log("ADLoaded:" + adUnitId + "/////" + height);
-
             m_ADInterface.EventListener.OnAdLoadedEvent();
         }
 
