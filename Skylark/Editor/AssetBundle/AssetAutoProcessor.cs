@@ -89,21 +89,21 @@ namespace Skylark.Editor
         #region //其他
         // public void OnPreprocessModel()
         // {
-        //     Debug.Log("OnPreprocessModel=" + this.assetPath);
+        //     Log.I("OnPreprocessModel=" + this.assetPath);
         // }
         // public void OnPostprocessModel(GameObject go)
         // {
-        //     Debug.Log("OnPostprocessModel=" + go.name);
+        //     Log.I("OnPostprocessModel=" + go.name);
         // }
         // //纹理导入之前调用，针对入到的纹理进行设置
         // public void OnPreprocessTexture()
         // {
-        //     Debug.Log("OnPreProcessTexture=" + this.assetPath);
+        //     Log.I("OnPreProcessTexture=" + this.assetPath);
 
         // }
         // public void OnPostprocessTexture(Texture2D tex)
         // {
-        //     Debug.Log("OnPostProcessTexture=" + this.assetPath);
+        //     Log.I("OnPostProcessTexture=" + this.assetPath);
         // }
 
 

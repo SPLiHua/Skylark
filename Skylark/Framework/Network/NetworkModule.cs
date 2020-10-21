@@ -53,7 +53,7 @@ namespace Skylark
             yield return webRequest.SendWebRequest();
             if (webRequest.isHttpError || webRequest.isNetworkError)
             {
-                Debug.Log("webRequest Get Failed:" + webRequest);
+                Log.I("webRequest Get Failed:" + webRequest);
                 callback(false, webRequest);
             }
             else
@@ -89,7 +89,7 @@ namespace Skylark
             yield return webRequest.SendWebRequest();
             if (webRequest.isHttpError || webRequest.isNetworkError)
             {
-                Debug.Log("webRequest Post Failed:" + webRequest);
+                Log.I("webRequest Post Failed:" + webRequest);
                 callback(false, webRequest);
             }
             else

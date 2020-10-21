@@ -85,7 +85,7 @@ namespace Skylark
                         percent = 1f;
                 }
 
-                //Debug.LogError(percent);
+                //Log.E(percent);
                 if (m_OnZipProgress != null)
                 {
                     m_OnZipProgress(m_ZipFilePath, m_OutDirPath, percent);

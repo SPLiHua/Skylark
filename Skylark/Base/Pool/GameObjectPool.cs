@@ -18,7 +18,7 @@ namespace Skylark
         {
             if (m_Prefab != null)
             {
-                Debug.LogError("Already exist {" + name + "}Pool.");
+                Log.E("Already exist {" + name + "}Pool.");
                 return;
             }
             if (prefab == null)
@@ -98,7 +98,7 @@ namespace Skylark
             {
                 if (m_Prefab == null)
                 {
-                    Debug.Log("Pool has no Prefab.");
+                    Log.I("Pool has no Prefab.");
                     return null;
                 }
                 Recycle(CreateNewGameObject());

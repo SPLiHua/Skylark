@@ -10,13 +10,13 @@ namespace Skylark
         {
             Timer.S.Post2Really((i) =>
             {
-                Debug.Log("Timer Post2Really Dealy1 Repeat10:" + i);
+                Log.I("Timer Post2Really Dealy1 Repeat10:" + i);
             }, 1, 10);
 
             return;
             Timer.S.Post2Really((i) =>
             {
-                Debug.Log("Timer Post2Really Dealy1 RepeatAlways:" + i);
+                Log.I("Timer Post2Really Dealy1 RepeatAlways:" + i);
             }, 1, -1);
         }
 

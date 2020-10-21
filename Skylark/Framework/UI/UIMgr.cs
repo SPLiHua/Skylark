@@ -32,7 +32,7 @@ namespace Skylark
                 panel = GetPanel(uiID);
                 if (panel == null)
                 {
-                    Debug.LogFormat("No find panel:{0}", uiID.ToString());
+                    Log.I("No find panel:{0}", uiID.ToString());
                     return;
                 }
             }
@@ -74,7 +74,7 @@ namespace Skylark
                 }
                 else
                 {
-                    Debug.Log("Close Panel failed:" + uiID);
+                    Log.I("Close Panel failed:" + uiID);
                 }
             }
         }

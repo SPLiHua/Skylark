@@ -70,7 +70,7 @@ namespace Skylark.Editor
 
             EditorUtility.SetDirty(data);
             AssetDatabase.SaveAssets();
-            Debug.Log("Success Process SpriteImport:" + folderPath);
+            Log.I("Success Process SpriteImport:" + folderPath);
         }
 
         protected static bool ProcessSpriteTextureImport(string texPath, string spritePackingTag)

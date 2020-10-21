@@ -13,13 +13,13 @@ namespace Skylark
         {
             if (string.IsNullOrEmpty(path))
             {
-                Debug.Log("SerializeJson Without Valid Path.");
+                Log.I("SerializeJson Without Valid Path.");
                 return false;
             }
 
             if (obj == null)
             {
-                Debug.Log("SerializeJson obj is Null.");
+                Log.I("SerializeJson obj is Null.");
                 return false;
             }
 
@@ -34,7 +34,7 @@ namespace Skylark
             }
             catch (Exception e)
             {
-                Debug.Log(e);
+                Log.I(e);
                 return false;
             }
 
@@ -58,7 +58,7 @@ namespace Skylark
         {
             if (stream == null)
             {
-                Debug.Log("DeserializeJson Failed!");
+                Log.I("DeserializeJson Failed!");
                 return default(T);
             }
 
@@ -94,11 +94,11 @@ namespace Skylark
                 }
                 catch (Exception e)
                 {
-                    Debug.Log(e);
+                    Log.I(e);
                 }
             }
 
-            Debug.Log("DeserializeBinary Failed!");
+            Log.I("DeserializeBinary Failed!");
             return default(T);
         }
 
@@ -106,7 +106,7 @@ namespace Skylark
         // {
         //     if (string.IsNullOrEmpty(path))
         //     {
-        //         Debug.Log("DeserializeJson Without Valid Path.");
+        //         Log.I("DeserializeJson Without Valid Path.");
         //         return default(T);
         //     }
 
@@ -131,10 +131,10 @@ namespace Skylark
         //     }
         //     catch (Exception e)
         //     {
-        //         Debug.Log(e);
+        //         Log.I(e);
         //     }
 
-        //     Debug.Log("DeserializeJson Failed!");
+        //     Log.I("DeserializeJson Failed!");
         //     return default(T);
         // }
 
@@ -142,7 +142,7 @@ namespace Skylark
         {
             if (string.IsNullOrEmpty(path))
             {
-                Debug.Log("DeserializeJson Without Valid Path.");
+                Log.I("DeserializeJson Without Valid Path.");
                 return default(T);
             }
 
@@ -185,11 +185,11 @@ namespace Skylark
                 }
                 catch (Exception e)
                 {
-                    Debug.Log(e);
+                    Log.I(e);
                 }
             }
 
-            Debug.Log("DeserializeJson Failed!");
+            Log.I("DeserializeJson Failed!");
             return default(T);
         }
 
@@ -197,13 +197,13 @@ namespace Skylark
         {
             if (string.IsNullOrEmpty(path))
             {
-                Debug.Log("SerializeBinary Without Valid Path.");
+                Log.I("SerializeBinary Without Valid Path.");
                 return false;
             }
 
             if (obj == null)
             {
-                Debug.Log("SerializeBinary obj is Null.");
+                Log.I("SerializeBinary obj is Null.");
                 return false;
             }
 
@@ -219,7 +219,7 @@ namespace Skylark
         {
             if (stream == null)
             {
-                Debug.Log("DeserializeBinary Failed!");
+                Log.I("DeserializeBinary Failed!");
                 return null;
             }
 
@@ -239,11 +239,11 @@ namespace Skylark
                 }
                 catch (Exception e)
                 {
-                    Debug.Log(e);
+                    Log.I(e);
                 }
             }
 
-            Debug.Log("DeserializeBinary Failed!");
+            Log.I("DeserializeBinary Failed!");
             return null;
         }
 
@@ -251,7 +251,7 @@ namespace Skylark
         {
             if (string.IsNullOrEmpty(path))
             {
-                Debug.Log("DeserializeBinary Without Valid Path.");
+                Log.I("DeserializeBinary Without Valid Path.");
                 return null;
             }
 
@@ -259,7 +259,7 @@ namespace Skylark
 
             if (!fileInfo.Exists)
             {
-                Debug.Log("DeserializeBinary File Not Exit.");
+                Log.I("DeserializeBinary File Not Exit.");
                 return null;
             }
 
@@ -274,7 +274,7 @@ namespace Skylark
                 }
             }
 
-            Debug.Log("DeserializeBinary Failed:" + path);
+            Log.I("DeserializeBinary Failed:" + path);
             return null;
         }
 
@@ -282,13 +282,13 @@ namespace Skylark
         {
             if (string.IsNullOrEmpty(path))
             {
-                Debug.Log("SerializeBinary Without Valid Path.");
+                Log.I("SerializeBinary Without Valid Path.");
                 return false;
             }
 
             if (obj == null)
             {
-                Debug.Log("SerializeBinary obj is Null.");
+                Log.I("SerializeBinary obj is Null.");
                 return false;
             }
 
@@ -309,7 +309,7 @@ namespace Skylark
         {
             if (string.IsNullOrEmpty(path))
             {
-                Debug.Log("DeserializeBinary Without Valid Path.");
+                Log.I("DeserializeBinary Without Valid Path.");
                 return null;
             }
 
@@ -326,7 +326,7 @@ namespace Skylark
                 }
             }
 
-            Debug.Log("DeserializeBinary Failed:" + path);
+            Log.I("DeserializeBinary Failed:" + path);
             return null;
         }
     }

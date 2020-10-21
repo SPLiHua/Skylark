@@ -92,7 +92,7 @@ namespace Skylark
         //     if (temp != null)
         //     {
         //         DataSavePathConfig.S.saveSettingList[index] = m_SaveSetting;
-        //         Debug.Log(Data.GetType().Name + ":数据覆盖");
+        //         Log.I(Data.GetType().Name + ":数据覆盖");
         //     }
         //     else
         //         DataSavePathConfig.S.saveSettingList.Add(m_SaveSetting);

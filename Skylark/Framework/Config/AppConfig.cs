@@ -46,6 +46,14 @@ namespace Skylark
             return instance;
         }
 
+        public void Init()
+        {
+            Log.Level = instance.m_LogLevel;
+        }
+
+        [SerializeField]
         public ProjectMode projectMode;
+        [SerializeField]
+        private LogLevel m_LogLevel = LogLevel.Max;
     }
 }

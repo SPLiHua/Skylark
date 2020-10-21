@@ -160,7 +160,7 @@ namespace Skylark
 
             if (m_AudioClip == null)
             {
-                Debug.Log("Asset Is Invalid AudioClip:" + m_Name);
+                Log.I("Asset Is Invalid AudioClip:" + m_Name);
                 Release();
                 return;
             }

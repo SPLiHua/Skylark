@@ -37,7 +37,7 @@ namespace Skylark
             if (type == null)
             {
                 if (adapterConfig.isDebugMode)
-                    Debug.Log("No Support ADAdapter:" + adapterConfig.adapterClassName);
+                    Log.I("No Support ADAdapter:" + adapterConfig.adapterClassName);
                 return false;
             }
 
@@ -45,7 +45,7 @@ namespace Skylark
             if (adsAdapter == null)
             {
                 if (adapterConfig.isDebugMode)
-                    Debug.Log("AdAdapter Create Failed:" + adapterConfig.adapterClassName);
+                    Log.I("AdAdapter Create Failed:" + adapterConfig.adapterClassName);
                 return false;
             }
             if (adsAdapter.InitWithConfig(adapterConfig))
@@ -120,7 +120,7 @@ namespace Skylark
                 }
                 else
                 {
-                    Debug.Log("No suit ADInterface.");
+                    Log.I("No suit ADInterface.");
                 }
             }
 
@@ -128,7 +128,7 @@ namespace Skylark
             // foreach (var item in m_ADInterfaceGroupDict.Values)
             // {
             //     foreach (var v in item.m_ADHandlerList)
-            //         Debug.Log("////////////////" + v.m_ADParams.name);
+            //         Log.I("////////////////" + v.m_ADParams.name);
             // }
         }
 
@@ -141,7 +141,7 @@ namespace Skylark
             }
             else
             {
-                Debug.Log("No suit ADInterface.");
+                Log.I("No suit ADInterface.");
                 return null;
             }
         }
@@ -156,7 +156,7 @@ namespace Skylark
         //     }
         //     else
         //     {
-        //         Debug.Log("No suit Handler.");
+        //         Log.I("No suit Handler.");
         //     }
         // }
     }

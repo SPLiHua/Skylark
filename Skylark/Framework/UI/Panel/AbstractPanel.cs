@@ -86,7 +86,7 @@ namespace Skylark
             }
             else
             {
-                Debug.Log("类型不符合使用maskpanel");
+                Log.I("类型不符合使用maskpanel");
             }
         }
         #endregion

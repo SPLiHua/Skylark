@@ -8,7 +8,7 @@ namespace Skylark
     {
         protected void HandleOnADReward(string adUnitId, string label, float amount)
         {
-            Debug.Log("ADReward:" + adUnitId + "/////" + label);
+            Log.I("ADReward:" + adUnitId + "/////" + label);
 
             m_ADInterface.EventListener.OnAdRewardEvent();
         }

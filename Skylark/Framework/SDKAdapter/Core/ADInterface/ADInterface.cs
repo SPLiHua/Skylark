@@ -54,7 +54,7 @@ namespace Skylark
                     }
                 }
             }
-            Debug.LogFormat("{0} no handler prepare.", m_ADGroup);
+            Log.I("{0} no handler prepare.", m_ADGroup);
             return false;
         }
 

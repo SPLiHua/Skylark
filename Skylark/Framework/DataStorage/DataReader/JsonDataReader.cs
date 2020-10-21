@@ -38,10 +38,10 @@ namespace Skylark
             if (json.Length > 0)
             {
                 t = JsonUtility.FromJson<T>(json);
-                Debug.Log(string.Format("{0}:{1}", t.GetType().Name, "读取成功"));
+                Log.I(string.Format("{0}:{1}", t.GetType().Name, "读取成功"));
                 return true;
             }
-            Debug.Log(string.Format("{0}:{1}", t.GetType().Name, "读取失败"));
+            Log.I(string.Format("{0}:{1}", t.GetType().Name, "读取失败"));
             return false;
         }
 
@@ -89,11 +89,11 @@ namespace Skylark
                     }
 
                     t = JsonConvert.DeserializeObject<T>(context);
-                    Debug.Log(string.Format("{0}:{1}", t.GetType().Name, "读取成功"));
+                    Log.I(string.Format("{0}:{1}", t.GetType().Name, "读取成功"));
                 }
                 catch (Exception e)
                 {
-                    Debug.Log(string.Format("{0}:{1}", t.GetType().Name, e));
+                    Log.I(string.Format("{0}:{1}", t.GetType().Name, e));
                     return false;
                 }
             }

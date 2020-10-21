@@ -27,12 +27,12 @@ namespace Skylark
             {
                 string jsonValue = JsonMapper.ToJson(t);
                 File.WriteAllText(path, jsonValue);
-                Debug.Log(string.Format("{0}:{1}", t.GetType().Name, "写入成功"));
+                Log.I(string.Format("{0}:{1}", t.GetType().Name, "写入成功"));
 
             }
             catch (Exception e)
             {
-                Debug.Log(string.Format("{0}{1}:{2}", t.GetType().Name, "写入失败", e));
+                Log.I(string.Format("{0}{1}:{2}", t.GetType().Name, "写入失败", e));
             }
         }
 
@@ -53,7 +53,7 @@ namespace Skylark
             }
             catch (Exception e)
             {
-                Debug.Log(string.Format("{0}{1}:{2}", t.GetType().Name, "写入失败", e));
+                Log.I(string.Format("{0}{1}:{2}", t.GetType().Name, "写入失败", e));
                 return;
             }
 
@@ -77,7 +77,7 @@ namespace Skylark
                 byte[] writeDataArray = UTF8Encoding.UTF8.GetBytes(jsonValue);
                 fs.Write(writeDataArray, 0, writeDataArray.Length);
                 fs.Flush();
-                Debug.Log(string.Format("{0}:{1}", t.GetType().Name, "写入成功"));
+                Log.I(string.Format("{0}:{1}", t.GetType().Name, "写入成功"));
             }
 
 #if UNITY_EDITOR

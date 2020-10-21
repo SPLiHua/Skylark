@@ -8,7 +8,7 @@ namespace Skylark
     {
         private void Awake()
         {
-            Debug.LogFormat("Init[{0}]", ApplicationMgr.S.GetType().Name);
+            Log.I("Init[{0}]", ApplicationMgr.S.GetType().Name);
         }
     }
 }

@@ -31,14 +31,14 @@ namespace Skylark
             if (type == null)
             {
                 if (adapterConfig.isDebugMode)
-                    Debug.Log("Not Support DataAnalysis:" + adapterConfig.adapterClassName);
+                    Log.I("Not Support DataAnalysis:" + adapterConfig.adapterClassName);
                 return;
             }
             DataAnalysisAdapter adapter = type.Assembly.CreateInstance(adapterConfig.adapterClassName) as DataAnalysisAdapter;
             if (adapter == null)
             {
                 if (adapterConfig.isDebugMode)
-                    Debug.Log("No Support Adapter:" + adapterConfig.adapterClassName);
+                    Log.I("No Support Adapter:" + adapterConfig.adapterClassName);
                 return;
             }
             if (adapter.InitWithConfig(adapterConfig))

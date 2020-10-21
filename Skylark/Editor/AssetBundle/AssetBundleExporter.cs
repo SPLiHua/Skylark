@@ -57,7 +57,7 @@ namespace Skylark.Editor
             string selectPath = EditorUtils.GetSelectedDirAssetsPath();//.CurrentSelectFolder;
             if (selectPath == null)
             {
-                Debug.Log("Not Select Any Folder!");
+                Log.I("Not Select Any Folder!");
                 return;
             }
 
@@ -74,11 +74,11 @@ namespace Skylark.Editor
 
             ProcessAssetBundleRes(table);
 
-            Debug.Log("#Start Remove Invalid AssetBundle");
+            Log.I("#Start Remove Invalid AssetBundle");
 
             RemoveInvalidAssetBundleInner(ProjectPathConfig.absExportRootFolder, table);
 
-            Debug.Log("#Success Remove Invalid AssetBundle.");
+            Log.I("#Success Remove Invalid AssetBundle.");
         }
 
 
@@ -107,7 +107,7 @@ namespace Skylark.Editor
 
             if (builderList.Count == 0)
             {
-                Debug.Log("No AssetBundles Found InSelectFolder:" + selectPath);
+                Log.I("No AssetBundles Found InSelectFolder:" + selectPath);
                 return;
             }
 
@@ -127,14 +127,14 @@ namespace Skylark.Editor
                 BuildAssetBundleOptions.ChunkBasedCompression,
                 buildTarget);
 
-            Debug.Log("Finish Build AssetBundles InSelectFolder:" + selectPath);
+            Log.I("Finish Build AssetBundles InSelectFolder:" + selectPath);
         }
 
         private static void CollectABInFolder(string folderPath, Dictionary<string, int> builderData)
         {
             if (folderPath == null)
             {
-                Debug.Log("Folder Path Is Null.");
+                Log.I("Folder Path Is Null.");
                 return;
             }
 
@@ -156,7 +156,7 @@ namespace Skylark.Editor
                 AssetImporter ai = AssetImporter.GetAtPath(fullFileName);
                 if (ai == null)
                 {
-                    Debug.Log("Not Find Asset:" + fullFileName);
+                    Log.I("Not Find Asset:" + fullFileName);
                     continue;
                 }
                 else if (!string.IsNullOrEmpty(ai.assetBundleName))
@@ -269,7 +269,7 @@ namespace Skylark.Editor
                     {
                         continue;
                     }
-                    //Debug.Log("清除name：" + p);
+                    //Log.I("清除name：" + p);
                     if (table.GetABUnit(p) == null)
                     {
                         File.Delete(files[i]);
@@ -277,7 +277,7 @@ namespace Skylark.Editor
                         File.Delete(files[i] + ".manifest");
                         File.Delete(files[i] + ".manifest.meta");
 
-                        Debug.Log("Delete Invalid AB:" + p);
+                        Log.I("Delete Invalid AB:" + p);
                     }
                 }
 

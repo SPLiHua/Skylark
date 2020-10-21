@@ -42,11 +42,11 @@ namespace Skylark.Editor
                     }
                 }
                 //DataSavePathConfig.S.saveSettingList.Clear();
-                Debug.Log("DeletePersistentData Success!");
+                Log.I("DeletePersistentData Success!");
             }
             catch (Exception e)
             {
-                Debug.LogError("DeletePersistentData failed:" + e);
+                Log.E("DeletePersistentData failed:" + e);
                 throw;
             }
         }

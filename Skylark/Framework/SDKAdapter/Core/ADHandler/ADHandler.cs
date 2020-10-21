@@ -76,7 +76,7 @@ namespace Skylark
 
         protected void HandleOnADLoadFailed(string adUnitId, string error)
         {
-            Debug.Log("ADLoadFailed:" + adUnitId + "/////" + error);
+            Log.I("ADLoadFailed:" + adUnitId + "/////" + error);
             m_ADState = ADState.Failed;
             m_ADInterface.EventListener.OnAdLoadFailedEvent();
         }
@@ -97,7 +97,7 @@ namespace Skylark
 
         protected void HandleOnAdClosed(string adUnitId)
         {
-            Debug.Log("AdClosed:" + adUnitId);
+            Log.I("AdClosed:" + adUnitId);
             m_ADState = ADState.Close;
             m_ADInterface.EventListener.OnAdCloseEvent();
         }

@@ -154,15 +154,15 @@ namespace Skylark
                 AssetData old = CheckAssetData(data.AssetName);
                 if (data.AssetName.EndsWith("spritesdata"))
                 {
-                    //Debug.Log(msg);
+                    //Log.I(msg);
                 }
                 else if (m_ABUnitList[old.AssetBundleIndex].abName.Contains("anim"))
                 {
-                    //Debug.Log(msg);
+                    //Log.I(msg);
                 }
                 else
                 {
-                    //Debug.Log(msg);
+                    //Log.I(msg);
                 }
                 return false;
             }
@@ -206,11 +206,11 @@ namespace Skylark
             string outPath = string.Format("{0}{1}/{2}", outFolder, m_Key, ProjectPathConfig.abConfigfileName);
             if (SerializeHelper.SerializeBinary(outPath, sd))
             {
-                Debug.Log("Success Save AssetDataTable:" + outPath);
+                Log.I("Success Save AssetDataTable:" + outPath);
             }
             else
             {
-                Debug.Log("Failed Save AssetDataTable:" + outPath);
+                Log.I("Failed Save AssetDataTable:" + outPath);
             }
         }
 
