@@ -55,7 +55,7 @@ namespace Skylark
         {
             get
             {
-                return "";
+                return "Resources/";
             }
         }
 

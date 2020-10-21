@@ -26,8 +26,11 @@ namespace Skylark
         {
             ResetParams();
             m_ADInterface = ADMgr.S.GetInterface(adInterfaceGroup);
-            m_ADShowCallback = callback;
-            m_ADInterface.ShowAD();
+            if (m_ADInterface != null)
+            {
+                m_ADShowCallback = callback;
+                m_ADInterface.ShowAD();
+            }
         }
 
         private void ResetParams()

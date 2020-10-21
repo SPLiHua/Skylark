@@ -29,7 +29,7 @@ namespace Skylark
 
             UIDataTable.SetABMode(false);
             UIDataTable.AddPanelData(UIID.MaskPanel, "UI/MaskPanel/MaskPanel");
-            UIDataTable.AddPanelData(UIID.FloatMessagePanel, "UI/FloatMessagePanel/FloatMessagePanel", PanelShowMode.Pop);
+            UIDataTable.AddPanelData(UIID.FloatMessagePanel, "FloatMessagePanel", PanelShowMode.Pop);
         }
     }
 }
