@@ -17,20 +17,27 @@ namespace Skylark
         private bool m_IsFinish = false;
         private ADInterface m_ADInterface;
 
-        public static void ShowAD(ADGroup adInterfaceGroup, ADShowResultDelegate callback = null)
+        public static bool ShowAD(ADGroup adInterfaceGroup, ADShowResultDelegate callback = null, bool bShowReminder = true)
         {
-            m_GlobalAdDisPlayer.ShowAd(adInterfaceGroup, callback);
+            bool bSuccess = m_GlobalAdDisPlayer.ShowAd(adInterfaceGroup, callback);
+            if (!bSuccess && bShowReminder)
+            {
+                UIMgr.S.OpenPanel(UIID.FloatMessagePanel, "AD no prepare.");
+            }
+
+            return bSuccess;
         }
 
-        private void ShowAd(ADGroup adInterfaceGroup, ADShowResultDelegate callback = null)
+        private bool ShowAd(ADGroup adInterfaceGroup, ADShowResultDelegate callback = null)
         {
             ResetParams();
             m_ADInterface = ADMgr.S.GetInterface(adInterfaceGroup);
             if (m_ADInterface != null)
             {
                 m_ADShowCallback = callback;
-                m_ADInterface.ShowAD();
+                return m_ADInterface.ShowAD();
             }
+            return false;
         }
 
         private void ResetParams()
