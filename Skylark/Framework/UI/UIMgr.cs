@@ -9,6 +9,7 @@ namespace Skylark
     {
         private Dictionary<UIID, AbstractPanel> m_AllPanelMap = new Dictionary<UIID, AbstractPanel>();
         private Dictionary<UIID, AbstractPanel> m_CurrentShowMap = new Dictionary<UIID, AbstractPanel>();
+        private List<AbstractPanel> m_CurrentShowList = new List<AbstractPanel>();
         private Stack<AbstractPanel> m_PopStack = new Stack<AbstractPanel>();
         public UIRoot m_UIRoot;
         ResLoader m_UILoader;
@@ -30,6 +31,7 @@ namespace Skylark
             if (!m_AllPanelMap.TryGetValue(uiID, out panel))
             {
                 panel = GetPanel(uiID);
+                panel.OnPanelInit();
                 if (panel == null)
                 {
                     Log.I("No find panel:{0}", uiID.ToString());
@@ -38,6 +40,7 @@ namespace Skylark
             }
             AdjustSiblingIndex(panel);
             m_CurrentShowMap.Add(uiID, panel);
+            m_CurrentShowList.Add(panel);
             panel.PanelOpen(args);
         }
 
@@ -53,6 +56,7 @@ namespace Skylark
                 if (panel != null && panelData != null)
                 {
                     m_CurrentShowMap.Remove(uiID);
+                    m_CurrentShowList.Remove(panel);
                     panel.OnPanelClose();
                     switch (panelData.m_PanelShowMode)
                     {
@@ -68,6 +72,7 @@ namespace Skylark
                             }
                             break;
                         case PanelShowMode.HideOther:
+                            m_UIRoot.NormalRoot.gameObject.SetActive(true);
                             m_UIRoot.PopRoot.gameObject.SetActive(true);
                             break;
                     }
@@ -130,6 +135,7 @@ namespace Skylark
                 panelGo.transform.localPosition = Vector3.zero;
                 m_AllPanelMap.Add(uiID, panel);
                 panel.uiID = uiID;
+                panel.SortIndex = m_UIRoot.RequireNextPanelSortingOrder(panel.ShowMode);
                 return panel;
             }
             return null;
@@ -141,14 +147,14 @@ namespace Skylark
             switch (panel.ShowMode)
             {
                 case PanelShowMode.Normal:
-                    //处理panel层级关系(目前方案暂时不需要这一步)
+                    //处理panel层级关系
+                    UpdatePanelSibling();
                     break;
                 case PanelShowMode.Pop:
                     PushPanel2Stack(panel);
                     break;
                 case PanelShowMode.HideOther:
                     HideOtherPanels(panel);
-                    //也处理一下层级关系(目前也不需要)
                     break;
             }
         }
@@ -165,18 +171,22 @@ namespace Skylark
 
         private void HideOtherPanels(AbstractPanel curPanel)
         {
-            // foreach (AbstractPanel panel in m_CurrentShowMap.Values)
-            // {
-            //     panel.OnPanelClose();
-            // }
-
-            //todo 层级最高
             m_UIRoot.NormalRoot.gameObject.SetActive(false);
+            m_UIRoot.PopRoot.gameObject.SetActive(false);
         }
 
-        public void UpdatePanelSibling(int index)
+        public void UpdatePanelSibling()
         {
+            m_CurrentShowList.Sort(PanelCompare);
+            for (int i = 0; i < m_CurrentShowList.Count; i++)
+            {
+                m_CurrentShowList[i].SetSiblingIndexAndSortingOrder(i);
+            }
+        }
 
+        private int PanelCompare(AbstractPanel a, AbstractPanel b)
+        {
+            return a.SortIndex - b.SortIndex;
         }
         #endregion
     }

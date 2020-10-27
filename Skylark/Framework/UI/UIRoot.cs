@@ -30,6 +30,28 @@ namespace Skylark
             get { return m_UICamera; }
         }
 
+        private int m_NormalPanelOrder = 10;
+        private int m_PopPanelOrder = 10000000;
+
+        public int RequireNextPanelSortingOrder(PanelShowMode showMode)
+        {
+            switch (showMode)
+            {
+                case PanelShowMode.Normal:
+                    m_NormalPanelOrder += 10;
+                    return m_NormalPanelOrder;
+                case PanelShowMode.Pop:
+                    m_PopPanelOrder += 10;
+                    return m_PopPanelOrder;
+                case PanelShowMode.HideOther:
+                    return 0;
+                default:
+                    break;
+            }
+
+            return m_NormalPanelOrder;
+        }
+
         private void Awake()
         {
             if (NormalRoot == null)

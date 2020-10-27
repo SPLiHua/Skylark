@@ -15,6 +15,13 @@ namespace Skylark
         }
         private SpritesHandler m_SpritesHandler;
 
+        private int m_SortIndex;
+        public int SortIndex
+        {
+            get { return m_SortIndex; }
+            set { m_SortIndex = value; }
+        }
+
         protected int m_SiblingIndex;
         public int SiblingIndex
         {
@@ -91,7 +98,17 @@ namespace Skylark
         }
         #endregion
 
+        public void SetSiblingIndexAndSortingOrder(int siblingIndex)
+        {
+            transform.SetSiblingIndex(siblingIndex);
+        }
+
         #region //子类重写
+        public virtual void OnPanelInit()
+        {
+
+        }
+
         public virtual void OnPanelOpen(params object[] args)
         {
 
