@@ -10,7 +10,8 @@ namespace Skylark
         public void Init()
         {
             AdDisPlayer.ShowAD(ADGroup.Banner0, null, false);
-            UIMgr.S.OpenPanel(UIID.GamingPanel);
+            if (AppConfig.S.projectMode != ProjectMode.Test)
+                UIMgr.S.OpenPanel(UIID.GamingPanel);
             AppConfig.S.projectMode = ProjectMode.Game;
             StageResFactory.S.Init();
             GameStageMgr.S.Init();
