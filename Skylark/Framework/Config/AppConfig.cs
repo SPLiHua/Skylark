@@ -37,11 +37,14 @@ namespace Skylark
 
             instance = obj as AppConfig;
 
-            AppConfig newAB = GameObject.Instantiate(instance);
+            // // AppConfig newAB = GameObject.Instantiate(instance);
 
-            instance = newAB;
+            // // instance = newAB;
 
-            loader.Recycle2Cache();
+            //loader.Recycle2Cache();
+
+            //简易写法
+            //instance = Resources.Load<AppConfig>("Config/AppConfig");
 
             return instance;
         }
