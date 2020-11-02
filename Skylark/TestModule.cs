@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Skylark
 {
-    public class TestModule
+    public class TestModule : MonoBehaviour
     {
         public void TestTimer()
         {
@@ -37,6 +37,28 @@ namespace Skylark
         {
             GameObject go = m_Loader.LoadSync("Bench_A") as GameObject;
             GameObject.Instantiate(go);
+        }
+
+        private void SequenceNodeWithEventAction()
+        {
+            SequenceNode m_SequenceNode = new SequenceNode();
+            m_SequenceNode.Append(EventAction.Allocate(() => { Log.I(Time.time); }));
+            m_SequenceNode.Append(EventAction.Allocate(() => { Log.I(Time.time); }));
+            m_SequenceNode.Append(EventAction.Allocate(() => { Log.I(Time.time); }));
+            m_SequenceNode.Append(EventAction.Allocate(() => { Log.I(Time.time); }));
+            m_SequenceNode.Append(EventAction.Allocate(() => { Log.I(Time.time); }));
+            this.ExecuteNode(m_SequenceNode);
+        }
+
+        private void SequenceNodeWithDelayAction()
+        {
+            SequenceNode m_SequenceNode = new SequenceNode();
+            m_SequenceNode.Append(DelayAction.Allocate(1, () => Log.I(Time.time)));
+            m_SequenceNode.Append(DelayAction.Allocate(1, () => Log.I(Time.time)));
+            m_SequenceNode.Append(DelayAction.Allocate(1, () => Log.I(Time.time)));
+            m_SequenceNode.Append(DelayAction.Allocate(1, () => Log.I(Time.time)));
+            m_SequenceNode.Append(DelayAction.Allocate(1, () => Log.I(Time.time)));
+            this.ExecuteNode(m_SequenceNode);
         }
     }
 }
