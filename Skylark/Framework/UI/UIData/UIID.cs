@@ -16,5 +16,6 @@ namespace Skylark
         LosePanel,
         WinPanel,
         BalloonPanel,
+        LoadingPanel,
     }
 }

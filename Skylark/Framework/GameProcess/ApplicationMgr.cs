@@ -11,6 +11,8 @@ namespace Skylark
             //DOTween.Init(false, true, LogBehaviour.ErrorsOnly);
             //DOTween.defaultEaseType = Ease.Linear;
             ResMgr.S.Init();
+            UIDataModule.S.Init();
+            UIMgr.S.OpenPanel(UIID.LoadingPanel);
             InitSDK();
         }
 
@@ -31,9 +33,8 @@ namespace Skylark
 
         protected override void StartGame()
         {
-            AudioMgr.S.OnSingletonInit();
-            UIDataModule.S.Init();
             NetworkModule.S.Init();
+            AudioMgr.S.OnSingletonInit();
             GameDataMgr.S.Init();
             GamePlayMgr.S.Init();
         }

@@ -10,7 +10,6 @@ namespace Skylark
     {
         public void Init()
         {
-            //AppConfig.S.projectMode = ProjectMode.Game;
             AdDisPlayer.ShowAD(ADGroup.Banner0, null, false);
 
             //判断当前场景
@@ -27,8 +26,11 @@ namespace Skylark
             {
                 AppConfig.S.projectMode = ProjectMode.Game;
             }
+
             if (AppConfig.S.projectMode == ProjectMode.Game)
                 UIMgr.S.OpenPanel(UIID.GamingPanel);
+
+            UIMgr.S.ClosePanel(UIID.LoadingPanel);
             StageResFactory.S.Init();
             GameStageMgr.S.Init();
             GameStageMgr.S.CreateStage(PlayerDataHandler.Data.m_CurrentStageIndex);

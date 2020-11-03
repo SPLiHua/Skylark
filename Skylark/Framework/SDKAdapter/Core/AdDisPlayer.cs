@@ -19,25 +19,29 @@ namespace Skylark
 
         public static bool ShowAD(ADGroup adInterfaceGroup, ADShowResultDelegate callback = null, bool bShowReminder = true)
         {
-            bool bSuccess = m_GlobalAdDisPlayer.ShowAd(adInterfaceGroup, callback);
-            if (!bSuccess && bShowReminder)
-            {
-                UIMgr.S.OpenPanel(UIID.FloatMessagePanel, "AD no prepare.");
-            }
-
-            return bSuccess;
+            return m_GlobalAdDisPlayer.ShowAd(adInterfaceGroup, callback, bShowReminder);
         }
 
-        private bool ShowAd(ADGroup adInterfaceGroup, ADShowResultDelegate callback = null)
+        private bool ShowAd(ADGroup adInterfaceGroup, ADShowResultDelegate callback = null, bool bShowReminder = true)
         {
             ResetParams();
+            bool bSuccess = false;
             m_ADInterface = ADMgr.S.GetInterface(adInterfaceGroup);
             if (m_ADInterface != null)
             {
                 m_ADShowCallback = callback;
-                return m_ADInterface.ShowAD();
+                bSuccess = m_ADInterface.ShowAD();
             }
-            return false;
+            if (!bSuccess && !m_IsFinish)
+            {
+                callback(m_IsShowSuccess, m_IsRewardSuccess, m_IsClickAd);
+                if (bShowReminder)
+                {
+                    UIMgr.S.OpenPanel(UIID.FloatMessagePanel, "AD no prepare.");
+                }
+            }
+
+            return bSuccess;
         }
 
         private void ResetParams()
@@ -65,6 +69,7 @@ namespace Skylark
 
         public void OnAdCloseEvent()
         {
+            m_IsFinish = true;
             if (m_ADShowCallback != null)
                 m_ADShowCallback(m_IsShowSuccess, m_IsRewardSuccess, m_IsClickAd);
             ResetParams();
