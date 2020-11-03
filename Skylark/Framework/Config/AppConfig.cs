@@ -58,5 +58,7 @@ namespace Skylark
         public ProjectMode projectMode;
         [SerializeField]
         private LogLevel m_LogLevel = LogLevel.Max;
+        [SerializeField]
+        public string m_AppID;
     }
 }

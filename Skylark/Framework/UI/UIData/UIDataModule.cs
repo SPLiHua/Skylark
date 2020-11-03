@@ -27,6 +27,7 @@ namespace Skylark
             UIDataTable.AddPanelData(UIID.WinPanel, "UI/Win/WinPanel");
             UIDataTable.AddPanelData(UIID.BalloonPanel, "UI/Balloon/BalloonPanel");
             UIDataTable.AddPanelData(UIID.LoadingPanel, "UI/Loading/LoadingPanel");
+            UIDataTable.AddPanelData(UIID.EvaluationPanel, "UI/Evaluation/EvaluationPanel");
 
             UIDataTable.SetABMode(false);
             UIDataTable.AddPanelData(UIID.MaskPanel, "UI/MaskPanel/MaskPanel");

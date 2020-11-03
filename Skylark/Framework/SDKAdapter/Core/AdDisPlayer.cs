@@ -34,7 +34,10 @@ namespace Skylark
             }
             if (!bSuccess && !m_IsFinish)
             {
-                callback(m_IsShowSuccess, m_IsRewardSuccess, m_IsClickAd);
+                if (callback != null)
+                {
+                    callback(m_IsShowSuccess, m_IsRewardSuccess, m_IsClickAd);
+                }
                 if (bShowReminder)
                 {
                     UIMgr.S.OpenPanel(UIID.FloatMessagePanel, "AD no prepare.");

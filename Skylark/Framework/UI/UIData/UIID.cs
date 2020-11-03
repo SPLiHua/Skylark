@@ -17,5 +17,6 @@ namespace Skylark
         WinPanel,
         BalloonPanel,
         LoadingPanel,
+        EvaluationPanel,
     }
 }

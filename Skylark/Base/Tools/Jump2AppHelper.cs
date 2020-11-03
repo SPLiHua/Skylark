@@ -13,7 +13,7 @@ namespace Skylark
         /// <summary>
         /// 跳转到应用商店
         /// </summary>
-        public static void openAPPinMarket(string appid)
+        public static void OpenAPPinMarket(string appid)
         {
 
 #if UNITY_ANDROID
@@ -45,7 +45,7 @@ namespace Skylark
         }
 
         /// <summary>
-        /// 判断手机是否有改app
+        /// 判断手机是否有该app
         /// </summary>
         private bool JudgeHaveApp(string pageName)
         {
