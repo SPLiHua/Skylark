@@ -12,7 +12,7 @@ namespace Skylark
             //DOTween.defaultEaseType = Ease.Linear;
             ResMgr.S.Init();
             UIDataModule.S.Init();
-            //UIMgr.S.OpenPanel(UIID.LoadingPanel);
+            UIMgr.S.OpenPanel(UIID.LoadingPanel);
             InitSDK();
         }
 
