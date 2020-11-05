@@ -52,6 +52,8 @@ namespace Skylark
         public void Init()
         {
             Log.Level = instance.m_LogLevel;
+            if (m_GameSpeed > 0)
+                Time.timeScale = m_GameSpeed;
         }
 
         [SerializeField]
@@ -60,5 +62,7 @@ namespace Skylark
         private LogLevel m_LogLevel = LogLevel.Max;
         [SerializeField]
         public string m_AppID;
+        [SerializeField]
+        public float m_GameSpeed = 1;
     }
 }
