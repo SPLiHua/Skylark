@@ -13,5 +13,8 @@ namespace Skylark
         OnAfterApplicationFocusChange,
 
         OnApplicationQuit,
+
+        OnLanguageChange,
+        OnLanguageTableSwitchFinish,
     }
 }
