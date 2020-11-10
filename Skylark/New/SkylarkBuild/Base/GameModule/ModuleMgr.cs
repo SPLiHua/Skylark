@@ -4,11 +4,17 @@ using System;
 
 namespace Skylark
 {
-    public class ModuleMgr
+    public class ModuleMgr : Singleton<ModuleMgr>
     {
-        private static LinkedList<AbstractModule> s_GameFrameworkModules = new LinkedList<AbstractModule>();
+        private LinkedList<AbstractModule> s_GameFrameworkModules = new LinkedList<AbstractModule>();
 
-        public static void Update(float elapseSeconds, float realElapseSeconds)
+        public override void OnSingletonInit()
+        {
+            //需轮询module
+            GetModule<ProcedureManager>();
+        }
+
+        public void Update(float elapseSeconds, float realElapseSeconds)
         {
             foreach (AbstractModule module in s_GameFrameworkModules)
             {
@@ -16,7 +22,7 @@ namespace Skylark
             }
         }
 
-        public static void Shutdown()
+        public void Shutdown()
         {
             for (LinkedListNode<AbstractModule> current = s_GameFrameworkModules.Last; current != null; current = current.Previous)
             {
@@ -26,7 +32,14 @@ namespace Skylark
             s_GameFrameworkModules.Clear();
         }
 
-        public static AbstractModule GetModule(Type moduleType)
+        public T GetModule<T>() where T : class
+        {
+            Type moduleType = typeof(T);
+
+            return GetModule(moduleType) as T;
+        }
+
+        private AbstractModule GetModule(Type moduleType)
         {
             foreach (AbstractModule module in s_GameFrameworkModules)
             {
@@ -39,7 +52,7 @@ namespace Skylark
             return CreateModule(moduleType);
         }
 
-        private static AbstractModule CreateModule(Type moduleType)
+        private AbstractModule CreateModule(Type moduleType)
         {
             AbstractModule module = (AbstractModule)Activator.CreateInstance(moduleType);
             if (module == null)

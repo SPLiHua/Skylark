@@ -34,9 +34,21 @@ namespace Skylark
 
         protected override void StartGame()
         {
-            NetworkModule.S.Init();
-            AudioMgr.S.OnSingletonInit();
             GameDataMgr.S.Init();
+            Log.I("Init[{0}]", AudioMgr.S.GetType().Name);
+            //需轮询module
+            Log.I("Init[{0}]", ModuleMgr.S.GetType().Name);
+            onApplicationUpdate += () => { ModuleMgr.S.Update(Time.deltaTime, Time.unscaledDeltaTime); };
+            //不需轮询module
+            SequenceNode sequenceNode = new SequenceNode();
+            sequenceNode.Append(EventAction.Allocate(() => { NetworkModule.S.Init(); }));
+            sequenceNode.Append(TableAction.Allocate());
+            sequenceNode.OnEndedCallback += TryStartGame;
+            this.ExecuteNode(sequenceNode);
+        }
+
+        private void TryStartGame()
+        {
             GamePlayMgr.S.Init();
         }
     }

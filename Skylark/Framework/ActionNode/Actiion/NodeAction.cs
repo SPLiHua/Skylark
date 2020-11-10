@@ -57,7 +57,6 @@ namespace Skylark
 
         public virtual void Finish()
         {
-            Debug.Log("Finish");
             Finished = true;
             if (OnEndedCallback != null)
             {
