@@ -31,9 +31,6 @@ namespace Skylark
                 UIMgr.S.OpenPanel(UIID.GamingPanel);
 
             UIMgr.S.ClosePanel(UIID.LoadingPanel);
-            StageResFactory.S.Init();
-            GameStageMgr.S.Init();
-            GameStageMgr.S.CreateStage(PlayerDataHandler.Data.m_CurrentStageIndex);
         }
     }
 }

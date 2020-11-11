@@ -6,13 +6,13 @@ namespace Skylark
 {
     public class GameDataMgr : Singleton<GameDataMgr>
     {
-        public StageDataHandler m_StageDataHandler;
+        //public StageDataHandler m_StageDataHandler;
         public PlayerDataHandler m_PlayerDataHandler;
 
 
         public void Init()
         {
-            m_StageDataHandler = new StageDataHandler();
+            //m_StageDataHandler = new StageDataHandler();
             m_PlayerDataHandler = new PlayerDataHandler();
             m_PlayerDataHandler.Init();
         }
@@ -24,9 +24,9 @@ namespace Skylark
 
     }
 
-    //该数据读取需传入关卡index
-    public class StageDataHandler : JsonDataHandler<StageData>
-    {
+    // //该数据读取需传入关卡index
+    // public class StageDataHandler : JsonDataHandler<StageData>
+    // {
 
-    }
+    // }
 }
