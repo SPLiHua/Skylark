@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: AppConfig
   m_EditorClassIdentifier: 
   projectMode: 0
-  m_LogLevel: 0
+  m_LogLevel: 5
   m_AppID: ca-app-pub-9726677720163576~7105074641
+  m_GameSpeed: 1

@@ -47,8 +47,8 @@ namespace Skylark
             get;
         }
 
-        void Start<TState>() where TState : FsmState<T>;
-        void Start(Type stateType);
+        void Start<TState>(params object[] param) where TState : FsmState<T>;
+        void Start(Type stateType, params object[] param);
         bool HasState<TState>() where TState : FsmState<T>;
         bool HasState(Type stateType);
         TState GetState<TState>() where TState : FsmState<T>;
@@ -60,5 +60,7 @@ namespace Skylark
         void SetData<TData>(string name, TData data) where TData : Variable;
         void SetData(string name, Variable data);
         bool RemoveData(string name);
+        void ChangeState<TState>(params object[] param) where TState : FsmState<T>;
+        void ChangeState(Type stateType, params object[] param);
     }
 }

@@ -183,7 +183,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8318644261121070859}
-  - component: {fileID: 8318644261121070858}
+  - component: {fileID: 1526247083}
   m_Layer: 0
   m_Name: UIRoot
   m_TagString: Untagged
@@ -208,7 +208,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8318644261121070858
+--- !u!114 &1526247083
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8318644261121070856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48f34001ec3792744a5b8ee65f53ba42, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b065a77deb9d28408b8c3c389f1e327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_NormalRoot: {fileID: 0}

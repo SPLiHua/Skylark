@@ -1,32 +1,32 @@
-﻿using ProcedureOwner = Skylark.IFsm<Skylark.IProcedureManager>;
+﻿using ParFsm = Skylark.IFsm<Skylark.IProcedureManager>;
 
 namespace Skylark
 {
     public class ProcedureBase : FsmState<IProcedureManager>
     {
-        protected internal override void OnInit(ProcedureOwner procedureOwner)
+        protected internal override void OnInit(ParFsm parFsm)
         {
-            base.OnInit(procedureOwner);
+            base.OnInit(parFsm);
         }
 
-        protected internal override void OnEnter(ProcedureOwner procedureOwner)
+        protected internal override void OnEnter(params object[] param)
         {
-            base.OnEnter(procedureOwner);
+            base.OnEnter();
         }
 
-        protected internal override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
+        protected internal override void OnUpdate(float elapseSeconds, float realElapseSeconds)
         {
-            base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
+            base.OnUpdate(elapseSeconds, realElapseSeconds);
         }
 
-        protected internal override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
+        protected internal override void OnLeave(bool isShutdown)
         {
-            base.OnLeave(procedureOwner, isShutdown);
+            base.OnLeave(isShutdown);
         }
 
-        protected internal override void OnDestroy(ProcedureOwner procedureOwner)
+        protected internal override void OnDestroy()
         {
-            base.OnDestroy(procedureOwner);
+            base.OnDestroy();
         }
     }
 }

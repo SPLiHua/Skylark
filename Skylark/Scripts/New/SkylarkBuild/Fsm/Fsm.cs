@@ -163,12 +163,12 @@ namespace Skylark
         {
             if (m_CurrentState != null)
             {
-                m_CurrentState.OnLeave(this, true);
+                m_CurrentState.OnLeave(true);
             }
 
             foreach (KeyValuePair<Type, FsmState<T>> state in m_States)
             {
-                state.Value.OnDestroy(this);
+                state.Value.OnDestroy();
             }
 
             Name = null;
@@ -180,7 +180,7 @@ namespace Skylark
             m_IsDestroyed = true;
         }
 
-        public void Start<TState>() where TState : FsmState<T>
+        public void Start<TState>(params object[] param) where TState : FsmState<T>
         {
             if (IsRunning)
             {
@@ -195,10 +195,10 @@ namespace Skylark
 
             m_CurrentStateTime = 0f;
             m_CurrentState = state;
-            m_CurrentState.OnEnter(this);
+            m_CurrentState.OnEnter(param);
         }
 
-        public void Start(Type stateType)
+        public void Start(Type stateType, params object[] param)
         {
             if (IsRunning)
             {
@@ -223,7 +223,7 @@ namespace Skylark
 
             m_CurrentStateTime = 0f;
             m_CurrentState = state;
-            m_CurrentState.OnEnter(this);
+            m_CurrentState.OnEnter(param);
         }
 
         public bool HasState<TState>() where TState : FsmState<T>
@@ -378,7 +378,7 @@ namespace Skylark
             }
 
             m_CurrentStateTime += elapseSeconds;
-            m_CurrentState.OnUpdate(this, elapseSeconds, realElapseSeconds);
+            m_CurrentState.OnUpdate(elapseSeconds, realElapseSeconds);
         }
 
         internal override void Shutdown()
@@ -386,12 +386,12 @@ namespace Skylark
             Clear();
         }
 
-        internal void ChangeState<TState>() where TState : FsmState<T>
+        public void ChangeState<TState>(params object[] param) where TState : FsmState<T>
         {
-            ChangeState(typeof(TState));
+            ChangeState(typeof(TState), param);
         }
 
-        internal void ChangeState(Type stateType)
+        public void ChangeState(Type stateType, params object[] param)
         {
             if (m_CurrentState == null)
             {
@@ -404,10 +404,10 @@ namespace Skylark
                 throw new Exception(string.Format("FSM '{0}' can not change state to '{1}' which is not exist.", new TypeNamePair(typeof(T), Name).ToString(), stateType.FullName));
             }
 
-            m_CurrentState.OnLeave(this, false);
+            m_CurrentState.OnLeave(false);
             m_CurrentStateTime = 0f;
             m_CurrentState = state;
-            m_CurrentState.OnEnter(this);
+            m_CurrentState.OnEnter(param);
         }
     }
 }
