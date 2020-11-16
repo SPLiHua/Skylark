@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.IO;
+using System;
 
 namespace Skylark.Editor
 {
@@ -35,6 +36,7 @@ namespace Skylark.Editor
                         // }
 
                         // Transform[] childs = obj.transform.GetComponentsInChildren<Transform>();
+                        //Array.Reverse(childs);
                         // foreach (Transform child in childs)
                         // {
                         //     Log.I("child的名字" + child.name);
