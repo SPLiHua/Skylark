@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f95ebb8e2dea6f7489e21ea58ba4043b, type: 3}
+  m_Script: {fileID: 11500000, guid: 699db720a4c1da248beb249a9561be9e, type: 3}
   m_Name: ProjectPathConfig
   m_EditorClassIdentifier: 
   m_BuildCSharpWinShell: table/output_code_csharp.bat

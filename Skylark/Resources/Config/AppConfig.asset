@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1dd68f9afb036844aa2d7438914dd95, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f631b84ba6de5941abcf461ebafb84a, type: 3}
   m_Name: AppConfig
   m_EditorClassIdentifier: 
   projectMode: 0
   m_LogLevel: 5
-  m_AppID: ca-app-pub-9726677720163576~7105074641
+  m_AppID: 
   m_GameSpeed: 1
