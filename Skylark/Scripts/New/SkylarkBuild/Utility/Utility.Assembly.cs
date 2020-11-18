@@ -94,6 +94,16 @@ namespace Skylark
 
                 return null;
             }
+
+            public static object CreateInstance<T>()
+            {
+                return System.Activator.CreateInstance<T>();
+            }
+
+            public static object CreateInstance(Type type)
+            {
+                return System.Activator.CreateInstance(type);
+            }
         }
     }
 }
