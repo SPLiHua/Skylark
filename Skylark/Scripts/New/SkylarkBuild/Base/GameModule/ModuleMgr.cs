@@ -12,6 +12,7 @@ namespace Skylark
         {
             //需轮询module
             GetModule<ProcedureManager>();
+            GetModule<InputModule>();
 
             //不需轮询，module
             SequenceNode sequenceNode = new SequenceNode();
