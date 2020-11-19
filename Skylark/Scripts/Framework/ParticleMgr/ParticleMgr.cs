@@ -21,6 +21,14 @@ namespace Skylark
             return particleUnit.m_ID;
         }
 
+        public int PlayParticleWithParent(string particleName, Vector3 localPos, bool bRecycle = true, Transform parTrans = null)
+        {
+            ParticleUnit particleUnit = ParticleUnit.Allocate();
+            particleUnit.SetParticle(particleName, localPos, bRecycle, parTrans);
+            m_ParticleUnitList.Add(particleUnit);
+            return particleUnit.m_ID;
+        }
+
         public void StopParticle(int id)
         {
             for (int i = 0; i < m_ParticleUnitList.Count; i++)

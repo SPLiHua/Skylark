@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Skylark
@@ -24,12 +23,21 @@ namespace Skylark
             return unit;
         }
 
-        public void SetParticle(string particleName, Vector3 Pos, bool bRecycle = true)
+        public void SetParticle(string particleName, Vector3 Pos, bool bRecycle = true, Transform parTrans = null)
         {
             m_ResLoader = ResLoader.Allocate();
             GameObject go = m_ResLoader.LoadSync(particleName) as GameObject;
             m_ParticleGo = GameObject.Instantiate(go);
-            m_ParticleGo.transform.position = Pos;
+            if (parTrans != null)
+            {
+                m_ParticleGo.transform.parent = parTrans;
+                m_ParticleGo.transform.localPosition = Pos;
+            }
+            else
+            {
+                m_ParticleGo.transform.position = Pos;
+            }
+
             ParticleSystem particle = null;
             particle = m_ParticleGo.GetComponent<ParticleSystem>();
             if (particle == null)
@@ -60,7 +68,5 @@ namespace Skylark
         {
             ObjectPool<ParticleUnit>.S.Recycle(this);
         }
-
-
     }
 }

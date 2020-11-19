@@ -10,6 +10,7 @@ namespace Skylark
         {
             base.OnInit(parFsm);
             //GameBaseConfig();
+            GamePlayMgr.S.StartGame();
         }
 
         private void GameBaseConfig()

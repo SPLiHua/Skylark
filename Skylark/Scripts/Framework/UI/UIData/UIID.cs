@@ -9,14 +9,8 @@ namespace Skylark
         MaskPanel,
         FloatMessagePanel,
 
-        //CubSurfer
-        GamingPanel,
-        ShopPanel,
-        OfflinePanel,
-        LosePanel,
-        WinPanel,
-        BalloonPanel,
+        //FireBaby
         LoadingPanel,
-        EvaluationPanel,
+        GamingPanel,
     }
 }

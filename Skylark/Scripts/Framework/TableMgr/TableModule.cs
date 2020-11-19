@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Skylark.Table;
 
 namespace Skylark
 {
@@ -64,6 +65,9 @@ namespace Skylark
             {
                 // TDConstTable.metaData,
                 TDLanguageTable.GetLanguageMetaData(),
+                TDPropsTable.metaData,
+                TDRolesTable.metaData,
+                TDSkillsTable.metaData,
                 // TDGuideTable.metaData,
                 // TDGuideStepTable.metaData,
                 // TDSocialAdapterTable.metaData,
@@ -72,14 +76,6 @@ namespace Skylark
                 // TDAppConfigTable.metaData,
                 // TDRemoteConfigTable.metaData,
                 // TDPurchaseTable.metaData,
-                // TDFishTable.metaData,
-                // TDFishPriceTable.metaData,
-                // TDSpinTable.metaData,
-                // TDPlayerLevelTable.metaData,
-                // TDTaskTable.metaData,
-                // TDEquipTable.metaData,
-                // TDFreeLevelUpTable.metaData,
-                // TDShopItemTable.metaData,
             };
         }
 

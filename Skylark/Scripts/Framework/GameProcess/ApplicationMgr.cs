@@ -11,7 +11,7 @@ namespace Skylark
             //DOTween.Init(false, true, LogBehaviour.ErrorsOnly);
             //DOTween.defaultEaseType = Ease.Linear;
             I18NMgr.S.Init();
-            //ResMgr.S.Init();
+            ResMgr.S.Init();
             UIDataModule.S.Init();
             //UIMgr.S.OpenPanel(UIID.LoadingPanel);
             //InitSDK();
@@ -29,7 +29,7 @@ namespace Skylark
             QualitySettings.vSyncCount = 0;
             Screen.sleepTimeout = SleepTimeout.NeverSleep;
             Screen.orientation = ScreenOrientation.Portrait;
-            //AppConfig.S.Init();
+            AppConfig.S.Init();
         }
 
         protected override void StartGame()
