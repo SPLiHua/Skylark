@@ -12,5 +12,6 @@ namespace Skylark
         //FireBaby
         LoadingPanel,
         GamingPanel,
+        RolePanel,
     }
 }

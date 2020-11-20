@@ -48,9 +48,10 @@ namespace Skylark
             OnPanelOpen(args);
         }
 
-        public void OnPanelClose()
+        public void PanelClose()
         {
             DataReset();
+            OnPanelClose();
             gameObject.SetActive(false);
         }
 
@@ -114,6 +115,10 @@ namespace Skylark
 
         }
 
+        public virtual void OnPanelClose()
+        {
+
+        }
         //需要数据清理的时候调用
         public virtual void DataReset()
         {

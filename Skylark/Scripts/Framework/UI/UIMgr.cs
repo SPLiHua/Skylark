@@ -57,7 +57,7 @@ namespace Skylark
                 {
                     m_CurrentShowMap.Remove(uiID);
                     m_CurrentShowList.Remove(panel);
-                    panel.OnPanelClose();
+                    panel.PanelClose();
                     switch (panelData.m_PanelShowMode)
                     {
                         case PanelShowMode.Pop:
@@ -164,7 +164,7 @@ namespace Skylark
             if (m_PopStack != null && m_PopStack.Count > 0)
             {
                 AbstractPanel topPanel = m_PopStack.Peek();
-                topPanel.OnPanelClose();
+                topPanel.PanelClose();
             }
             m_PopStack.Push(panel);
         }

@@ -22,6 +22,7 @@ namespace Skylark
             UIDataTable.SetABMode(true);
             UIDataTable.AddPanelData(UIID.LoadingPanel, "UI/Prefabs/LoadingPanel");
             UIDataTable.AddPanelData(UIID.GamingPanel, "UI/Prefabs/GamingPanel");
+            UIDataTable.AddPanelData(UIID.RolePanel, "UI/Prefabs/RolePanel");
 
             UIDataTable.SetABMode(false);
             UIDataTable.AddPanelData(UIID.MaskPanel, "UI/MaskPanel/MaskPanel");
