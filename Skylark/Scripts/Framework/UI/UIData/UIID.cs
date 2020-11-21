@@ -13,5 +13,6 @@ namespace Skylark
         LoadingPanel,
         GamingPanel,
         RolePanel,
+        GamOverPanel,
     }
 }

@@ -9,8 +9,6 @@ namespace Skylark
         protected internal override void OnInit(ParFsm parFsm)
         {
             base.OnInit(parFsm);
-            //GameBaseConfig();
-            GamePlayMgr.S.StartGame();
         }
 
         private void GameBaseConfig()
@@ -41,6 +39,8 @@ namespace Skylark
         protected internal override void OnEnter(params object[] param)
         {
             base.OnEnter(param);
+            //GameBaseConfig();
+            GamePlayMgr.S.StartGame();
         }
 
         protected internal override void OnUpdate(float elapseSeconds, float realElapseSeconds)

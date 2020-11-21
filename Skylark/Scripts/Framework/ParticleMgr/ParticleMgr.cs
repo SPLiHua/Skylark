@@ -41,6 +41,18 @@ namespace Skylark
             }
         }
 
+        public void StopParticle(string name)
+        {
+            for (int i = 0; i < m_ParticleUnitList.Count; i++)
+            {
+                if (m_ParticleUnitList[i].m_Name == name)
+                {
+                    m_ParticleUnitList[i].Recycle2Cache();
+                    break;
+                }
+            }
+        }
+
         public ParticleUnit GetParticleUnit(int id)
         {
             for (int i = 0; i < m_ParticleUnitList.Count; i++)

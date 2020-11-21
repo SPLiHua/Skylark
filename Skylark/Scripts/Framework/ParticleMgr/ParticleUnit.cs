@@ -9,6 +9,7 @@ namespace Skylark
         protected static int s_NextID = 0;
 
         public int m_ID;
+        public string m_Name;
         ResLoader m_ResLoader;
         GameObject m_ParticleGo;
         public GameObject ParticleGo { get => m_ParticleGo; }
@@ -26,6 +27,7 @@ namespace Skylark
         public void SetParticle(string particleName, Vector3 Pos, bool bRecycle = true, Transform parTrans = null)
         {
             m_ResLoader = ResLoader.Allocate();
+            m_Name = particleName;
             GameObject go = m_ResLoader.LoadSync(particleName) as GameObject;
             m_ParticleGo = GameObject.Instantiate(go);
             if (parTrans != null)
