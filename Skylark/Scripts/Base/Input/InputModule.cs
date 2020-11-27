@@ -28,6 +28,7 @@ namespace Skylark
 
         private void OnClickF1()
         {
+            EventSystem.S.Send<GEID>(GEID.ScreenShake);
         }
 
         private void OnClickF2()
