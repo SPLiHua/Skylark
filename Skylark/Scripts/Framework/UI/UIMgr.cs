@@ -95,7 +95,7 @@ namespace Skylark
         }
         #endregion
 
-        private AbstractPanel GetPanel(UIID uiID)
+        public AbstractPanel GetPanel(UIID uiID)
         {
             PanelData panelData = null;
             var data = UIDataTable.Get(uiID);
