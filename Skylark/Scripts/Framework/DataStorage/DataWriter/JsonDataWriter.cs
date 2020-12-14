@@ -77,7 +77,7 @@ namespace Skylark
                 byte[] writeDataArray = UTF8Encoding.UTF8.GetBytes(jsonValue);
                 fs.Write(writeDataArray, 0, writeDataArray.Length);
                 fs.Flush();
-                Log.I(string.Format("{0}:{1}", t.GetType().Name, "写入成功"));
+                Log.I(string.Format("{0}:{1}", t.GetType().Name, "Write Success"));
             }
 
 #if UNITY_EDITOR

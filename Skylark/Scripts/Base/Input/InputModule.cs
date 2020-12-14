@@ -33,6 +33,7 @@ namespace Skylark
 
         private void OnClickF2()
         {
+            EventSystem.S.Send<GEID>(GEID.PlayerRoleTwinkle);
         }
 
         private void OnClickF3()

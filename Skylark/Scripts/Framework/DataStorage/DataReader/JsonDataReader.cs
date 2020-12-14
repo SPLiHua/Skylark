@@ -89,7 +89,7 @@ namespace Skylark
                     }
 
                     t = JsonConvert.DeserializeObject<T>(context);
-                    Log.I(string.Format("{0}:{1}", t.GetType().Name, "读取成功"));
+                    Log.I(string.Format("{0}:{1}", t.GetType().Name, "Load Success"));
                 }
                 catch (Exception e)
                 {
