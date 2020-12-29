@@ -58,6 +58,23 @@ namespace Skylark.Editor
             AssetDatabase.SaveAssets();
         }
 
+        [MenuItem("Assets/Skylark/Config/GamePersistentData")]
+        public static void BuildDataGamePersistent()
+        {
+            GamePersistentData data = null;
+            string folderPath = EditorUtils.GetSelectedDirAssetsPath();
+            string spriteDataPath = folderPath + "/GamePersistentData.asset";
+
+            data = AssetDatabase.LoadAssetAtPath<GamePersistentData>(spriteDataPath);
+            if (data == null)
+            {
+                data = ScriptableObject.CreateInstance<GamePersistentData>();
+                AssetDatabase.CreateAsset(data, spriteDataPath);
+            }
+            EditorUtility.SetDirty(data);
+            AssetDatabase.SaveAssets();
+        }
+
 
         // [MenuItem("Assets/Skylark/Config/DataSavePathConfig")]
         // public static void BuildDataSavePathConfig()
