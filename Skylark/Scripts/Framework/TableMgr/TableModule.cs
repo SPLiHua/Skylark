@@ -68,6 +68,7 @@ namespace Skylark
                 TDPropsTable.metaData,
                 TDRolesTable.metaData,
                 TDSkillsTable.metaData,
+                TDConstTable.metaData,
                 // TDGuideTable.metaData,
                 // TDGuideStepTable.metaData,
                 // TDSocialAdapterTable.metaData,
