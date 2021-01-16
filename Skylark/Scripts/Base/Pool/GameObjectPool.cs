@@ -11,13 +11,11 @@ namespace Skylark
         private GameObject m_Prefab;
         private int m_MaxCount = 10;
         private Stack<GameObject> m_CacheStack;
-        private List<GameObject> m_AllCacheList;
         private IGameObjectPoolStrategy m_Strategy;
 
         public void InitPool(string name, GameObject prefab, Transform parentTrans, int maxCount, int initCount, IGameObjectPoolStrategy strategy = null)
         {
             m_CacheStack = new Stack<GameObject>();
-            m_AllCacheList = new List<GameObject>();
             if (m_Prefab != null)
             {
                 Log.E("Already exist {" + name + "}Pool.");
@@ -108,9 +106,9 @@ namespace Skylark
                 result = m_CacheStack.Pop();
             }
 
-            if (!m_AllCacheList.Contains(result))
+            if (result.GetComponent<ICacheAble>() != null)
             {
-                m_AllCacheList.Add(result);
+                result.GetComponent<ICacheAble>().cacheFlag = false;
             }
 
             m_Strategy.OnAllcate(result);
@@ -122,40 +120,29 @@ namespace Skylark
         {
             if (go == null)
                 return;
-            m_CacheStack = new Stack<GameObject>();
             m_Strategy.OnRecycle(go);
             PoolObjectReset itemComponent = go.GetComponent<PoolObjectReset>();
+            if (itemComponent != null)
+                itemComponent.OnReset2Cache();
+
             if (m_MaxCount > 0)
             {
                 if (m_CacheStack.Count >= m_MaxCount)
                 {
-                    if (itemComponent != null)
-                        itemComponent.OnReset2Cache();
                     GameObject.Destroy(go);
                     return;
                 }
             }
-            if (itemComponent != null)
-                itemComponent.OnReset2Cache();
+
             if (go.GetComponent<ICacheAble>() != null)
             {
+                go.GetComponent<ICacheAble>().cacheFlag = true;
                 go.GetComponent<ICacheAble>().OnCacheReset();
             }
+
             go.transform.SetParent(m_Root, true);
             go.SetActive(false);  //某些情况不需要处理这步
-            if (!m_CacheStack.Contains(go))
-                m_CacheStack.Push(go);
-
-
-        }
-
-        public void RecycleAll()
-        {
-            foreach (var item in m_AllCacheList)
-            {
-                Recycle(item);
-            }
-            m_AllCacheList.Clear();
+            m_CacheStack.Push(go);
         }
 
         public void RemoveAllObject(bool destroySelf, bool destoryPrefab)
@@ -167,27 +154,20 @@ namespace Skylark
             }
             if (destroySelf)
             {
-                foreach (var item in m_AllCacheList)
+                GameObject next = null;
+                while (m_CacheStack.Count > 0)
                 {
-                    GameObject.Destroy(item);
+                    next = m_CacheStack.Pop();
+                    GameObject.Destroy(next);
                 }
-                m_AllCacheList.Clear();
+                m_CacheStack.Clear();
                 if (m_Root != null)
                 {
                     GameObject.Destroy(m_Root.gameObject);
                     m_Root = null;
                 }
-                m_CacheStack.Clear();
                 return;
             }
-            if (m_CacheStack == null || m_CacheStack.Count == 0)
-                return;
-            // GameObject next = null;
-            // while (m_CacheStack.Count > 0)
-            // {
-            //     next = m_CacheStack.Pop();
-            //     GameObject.Destroy(next);
-            // }
         }
 
         private GameObject CreateNewGameObject()
