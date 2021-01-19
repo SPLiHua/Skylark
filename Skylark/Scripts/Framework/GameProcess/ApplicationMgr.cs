@@ -34,7 +34,6 @@ namespace Skylark
 
         protected override void StartGame()
         {
-            GameDataMgr.S.Init();
             Log.I("Init[{0}]", AudioMgr.S.GetType().Name);
         }
     }

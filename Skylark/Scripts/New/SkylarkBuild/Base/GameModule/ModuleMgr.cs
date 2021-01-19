@@ -18,6 +18,7 @@ namespace Skylark
             SequenceNode sequenceNode = new SequenceNode();
             sequenceNode.Append(EventAction.Allocate(() => { NetworkModule.S.Init(); }));
             sequenceNode.Append(TableAction.Allocate());
+            sequenceNode.Append(EventAction.Allocate(() => { GameDataMgr.S.Init(); }));
             sequenceNode.OnEndedCallback += () => { GetModule<ProcedureManager>().StartProcedure<GamingProcedure>(); };
             ApplicationMgr.S.ExecuteNode(sequenceNode);
         }
