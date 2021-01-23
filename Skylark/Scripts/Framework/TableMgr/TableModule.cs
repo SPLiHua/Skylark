@@ -63,7 +63,6 @@ namespace Skylark
         {
             TableConfig.preLoadTableArray = new TDTableMetaData[]
             {
-                // TDConstTable.metaData,
                 TDLanguageTable.GetLanguageMetaData(),
                 TDPropsTable.metaData,
                 TDPropsEntityTable.metaData,
@@ -72,6 +71,8 @@ namespace Skylark
                 TDConstTable.metaData,
                 TDBasePropertyTable.metaData,
                 TDChestTable.metaData,
+                TDMonsterTable.metaData,
+                TDStageTable.metaData,
                 // TDGuideTable.metaData,
                 // TDGuideStepTable.metaData,
                 // TDSocialAdapterTable.metaData,
