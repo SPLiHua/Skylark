@@ -75,6 +75,22 @@ namespace Skylark.Editor
             AssetDatabase.SaveAssets();
         }
 
+        [MenuItem("Assets/Skylark/Config/GameHelper")]
+        public static void BuildGameHelper()
+        {
+            GameHelper data = null;
+            string folderPath = EditorUtils.GetSelectedDirAssetsPath();
+            string spriteDataPath = folderPath + "/GameHelper.asset";
+
+            data = AssetDatabase.LoadAssetAtPath<GameHelper>(spriteDataPath);
+            if (data == null)
+            {
+                data = ScriptableObject.CreateInstance<GameHelper>();
+                AssetDatabase.CreateAsset(data, spriteDataPath);
+            }
+            EditorUtility.SetDirty(data);
+            AssetDatabase.SaveAssets();
+        }
 
         // [MenuItem("Assets/Skylark/Config/DataSavePathConfig")]
         // public static void BuildDataSavePathConfig()
