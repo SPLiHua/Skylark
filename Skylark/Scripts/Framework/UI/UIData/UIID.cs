@@ -15,5 +15,7 @@ namespace Skylark
         RolePanel,
         GamOverPanel,
         TipPanel,
+        HomePanel,
+        MainPanel,
     }
 }

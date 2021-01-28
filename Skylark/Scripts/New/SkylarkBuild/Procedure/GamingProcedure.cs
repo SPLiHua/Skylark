@@ -40,7 +40,9 @@ namespace Skylark
         {
             base.OnEnter(param);
             //GameBaseConfig();
-            GamePlayMgr.S.StartGame();
+            Log.I("Init[{0}]", GamePlayMgr.S.GetType().Name);
+            UIMgr.S.OpenPanel(UIID.HomePanel);
+            UIMgr.S.OpenPanel(UIID.MainPanel);
         }
 
         protected internal override void OnUpdate(float elapseSeconds, float realElapseSeconds)

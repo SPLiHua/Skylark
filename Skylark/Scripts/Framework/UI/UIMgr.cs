@@ -24,10 +24,7 @@ namespace Skylark
         public void OpenPanel(UIID uiID, params object[] args)
         {
             AbstractPanel panel = null;
-            if (m_CurrentShowMap.TryGetValue(uiID, out panel))
-            {
-                return;
-            }
+
             if (!m_AllPanelMap.TryGetValue(uiID, out panel))
             {
                 panel = GetPanel(uiID);
@@ -38,8 +35,12 @@ namespace Skylark
                     return;
                 }
             }
+            panel.SortIndex = m_UIRoot.RequireNextPanelSortingOrder(panel.ShowMode);
             AdjustSiblingIndex(panel);
-            m_CurrentShowMap.Add(uiID, panel);
+            if (!m_CurrentShowMap.ContainsValue(panel))
+            {
+                m_CurrentShowMap.Add(uiID, panel);
+            }
             m_CurrentShowList.Add(panel);
             panel.PanelOpen(args);
         }
@@ -135,7 +136,6 @@ namespace Skylark
                 panelGo.transform.localPosition = Vector3.zero;
                 m_AllPanelMap.Add(uiID, panel);
                 panel.uiID = uiID;
-                panel.SortIndex = m_UIRoot.RequireNextPanelSortingOrder(panel.ShowMode);
                 return panel;
             }
             return null;

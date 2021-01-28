@@ -28,7 +28,7 @@ namespace Skylark
 
         private void OnClickF1()
         {
-            EventSystem.S.Send<GEID>(GEID.ScreenShake);
+            GameHelper.S.LoadData();
         }
 
         private void OnClickF2()
