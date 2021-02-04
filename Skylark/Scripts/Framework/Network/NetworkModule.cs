@@ -27,7 +27,10 @@ namespace Skylark
             {
                 case WebType.Get:
                     getRequestList.AddLast(data);
-                    StartGetIEnumerator();
+                    if (getWebCurrentData == null)
+                    {
+                        StartGetIEnumerator();
+                    }
                     break;
                 case WebType.Post:
                     postRequestList.AddLast(data);
@@ -39,10 +42,15 @@ namespace Skylark
         #region //Get
         public void StartGetIEnumerator()
         {
-            if (getWebCurrentData.Value.cacheFlag && getRequestList.First != null)
+            getWebCurrentData = getRequestList.First;
+
+            if (getWebCurrentData != null)
             {
-                getWebCurrentData = getRequestList.First;
                 StartCoroutine(GetRequest(getWebCurrentData.Value.url, getWebCurrentData.Value.fun));
+            }
+            else
+            {
+                getRequestList.Clear();
             }
         }
 
@@ -58,8 +66,8 @@ namespace Skylark
             }
             else
             {
-                callback(true, webRequest);
                 HandleNextGet();
+                callback(true, webRequest);
             }
         }
 
@@ -75,9 +83,10 @@ namespace Skylark
 
         public void StartPostIEnumerator()
         {
-            if (postWebCurrentData.Value.cacheFlag && postRequestList.First != null)
+            postWebCurrentData = postRequestList.First;
+
+            if (postWebCurrentData != null && !postWebCurrentData.Value.cacheFlag)
             {
-                postWebCurrentData = postRequestList.First;
                 StartCoroutine(PostRequest(postWebCurrentData.Value.url, postWebCurrentData.Value.wwwForm, postWebCurrentData.Value.fun));
             }
         }
@@ -103,8 +112,7 @@ namespace Skylark
         {
             postWebCurrentData.Value.Recycle2Cache();
             postRequestList.RemoveFirst();
-            postWebCurrentData = null;
-            StartGetIEnumerator();
+            StartPostIEnumerator();
         }
         #endregion
     }

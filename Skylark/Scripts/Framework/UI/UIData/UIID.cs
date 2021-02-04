@@ -17,5 +17,10 @@ namespace Skylark
         TipPanel,
         HomePanel,
         MainPanel,
+        EggPanel,
+        ChestPanel,
+        PausePanel,
+        BasePropertyPanel,
+        PrisonPanel,
     }
 }

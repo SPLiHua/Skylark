@@ -74,7 +74,7 @@ namespace Skylark
             m_TimeWrapList = new LinkedList<TimeWrap>();
         }
 
-        public bool Register<T>(T key, UnityAction fun, float spanTime) where T : IConvertible
+        public bool Register<T>(T key, UnityAction fun, float spanTime = 1) where T : IConvertible
         {
             var k = key.ToInt32(null);
             TimeWrap wrap = QueryWrap(k);

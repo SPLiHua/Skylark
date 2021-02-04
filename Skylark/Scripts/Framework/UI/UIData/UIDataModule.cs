@@ -20,12 +20,17 @@ namespace Skylark
         private void RegisterAllPanel()
         {
             UIDataTable.SetABMode(true);
-            UIDataTable.AddPanelData(UIID.LoadingPanel, "UI/Prefabs/LoadingPanel");
-            UIDataTable.AddPanelData(UIID.GamingPanel, "UI/Prefabs/GamingPanel");
-            UIDataTable.AddPanelData(UIID.RolePanel, "UI/Prefabs/RolePanel");
-            UIDataTable.AddPanelData(UIID.GamOverPanel, "UI/Prefabs/GameOverPanel");
-            UIDataTable.AddPanelData(UIID.TipPanel, "UI/Prefabs/TipPanel");
-            UIDataTable.AddPanelData(UIID.HomePanel, "UI/Prefabs/HomePanel");
+            UIDataTable.AddPanelData(UIID.LoadingPanel, "UI/Prefabs/LoadingPanel/LoadingPanel");
+            UIDataTable.AddPanelData(UIID.GamingPanel, "UI/Prefabs/GamingPanel/GamingPanel");
+            UIDataTable.AddPanelData(UIID.RolePanel, "UI/Prefabs/RolePanel/RolePanel");
+            UIDataTable.AddPanelData(UIID.GamOverPanel, "UI/Prefabs/GamOverPanel/GameOverPanel");
+            UIDataTable.AddPanelData(UIID.TipPanel, "UI/Prefabs/TipPanel/TipPanel");
+            UIDataTable.AddPanelData(UIID.HomePanel, "UI/Prefabs/HomePanel/HomePanel");
+            UIDataTable.AddPanelData(UIID.EggPanel, "UI/Prefabs/EggPanel/EggPanel");
+            UIDataTable.AddPanelData(UIID.ChestPanel, "UI/Prefabs/ChestPanel/ChestPanel");
+            UIDataTable.AddPanelData(UIID.PausePanel, "UI/Prefabs/PausePanel/PausePanel");
+            UIDataTable.AddPanelData(UIID.PrisonPanel, "UI/Prefabs/PrisonPanel/PrisonPanel");
+            UIDataTable.AddPanelData(UIID.BasePropertyPanel, "UI/Prefabs/BasePropertyPanel/BasePropertyPanel");
             UIDataTable.AddPanelData(UIID.MainPanel, "UI/Prefabs/MainPanel", PanelShowMode.Pop);
 
             UIDataTable.SetABMode(false);
