@@ -30,7 +30,9 @@ namespace Skylark
             UIDataTable.AddPanelData(UIID.ChestPanel, "UI/Prefabs/ChestPanel/ChestPanel");
             UIDataTable.AddPanelData(UIID.PausePanel, "UI/Prefabs/PausePanel/PausePanel");
             UIDataTable.AddPanelData(UIID.PrisonPanel, "UI/Prefabs/PrisonPanel/PrisonPanel");
+            UIDataTable.AddPanelData(UIID.ChestUnlockPanel, "UI/Prefabs/ChestUnlockPanel/ChestUnlockPanel");
             UIDataTable.AddPanelData(UIID.BasePropertyPanel, "UI/Prefabs/BasePropertyPanel/BasePropertyPanel");
+            UIDataTable.AddPanelData(UIID.ChestOpenPanel, "UI/Prefabs/ChestOpenPanel/ChestOpenPanel", PanelShowMode.Pop);
             UIDataTable.AddPanelData(UIID.MainPanel, "UI/Prefabs/MainPanel", PanelShowMode.Pop);
 
             UIDataTable.SetABMode(false);

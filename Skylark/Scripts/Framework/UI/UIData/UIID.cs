@@ -21,6 +21,8 @@ namespace Skylark
         ChestPanel,
         PausePanel,
         BasePropertyPanel,
+        ChestOpenPanel,
         PrisonPanel,
+        ChestUnlockPanel,
     }
 }

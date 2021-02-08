@@ -43,14 +43,9 @@ namespace Skylark
         public void StartGetIEnumerator()
         {
             getWebCurrentData = getRequestList.First;
-
             if (getWebCurrentData != null)
             {
                 StartCoroutine(GetRequest(getWebCurrentData.Value.url, getWebCurrentData.Value.fun));
-            }
-            else
-            {
-                getRequestList.Clear();
             }
         }
 
@@ -66,8 +61,8 @@ namespace Skylark
             }
             else
             {
-                HandleNextGet();
                 callback(true, webRequest);
+                HandleNextGet();
             }
         }
 
