@@ -196,6 +196,7 @@ public static class EncryptUtil
         byte[] btKey = keyVal.FormatByte(encoding);
         byte[] btIv = ivVal.FormatByte(encoding);
         byte[] byteArray = encoding.GetBytes(value);
+
         string encrypt;
         Rijndael aes = Rijndael.Create();
         using (MemoryStream mStream = new MemoryStream())

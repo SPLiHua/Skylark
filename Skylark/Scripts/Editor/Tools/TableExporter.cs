@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Threading;
 using UnityEditor;
 
@@ -113,6 +114,31 @@ namespace Skylark.Editor
 
             process.WaitForExit();
             process.Close();
+
+            string content;
+            DirectoryInfo root = new DirectoryInfo(UnityEngine.Application.streamingAssetsPath + "/config");
+            FileInfo[] files = root.GetFiles();
+            foreach (var item in files)
+            {
+                if (item.FullName.Contains("meta"))
+                {
+                    continue;
+                }
+
+                using (StreamReader sr = item.OpenText())
+                {
+                    content = sr.ReadToEnd();
+                    content = EncryptUtil.AesStr(content, SaveSetting.m_AESKeyValue, SaveSetting.m_AESIvValue);
+                    sr.Close();
+                }
+                using (FileStream fs = item.OpenWrite())
+                {
+                    fs.SetLength(0);
+                    byte[] writeDataArray = System.Text.UTF8Encoding.UTF8.GetBytes(content);
+                    fs.Write(writeDataArray, 0, writeDataArray.Length);
+                    fs.Flush();
+                }
+            }
         }
     }
 }

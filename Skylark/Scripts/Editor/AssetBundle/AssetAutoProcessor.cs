@@ -77,7 +77,9 @@ namespace Skylark.Editor
                 }
                 else
                 {
-                    ai.assetBundleName = string.Format("{0}/{1}.bundle", assetBundleName, PathHelper.FileNameWithoutSuffix(Path.GetFileName(assetPath)));
+                    //Debug.Log(PathHelper.FileNameWithoutSuffix(Path.GetFileName(assetPath)));
+                    ai.assetBundleName = assetBundleName + ".bundle";
+                    //ai.assetBundleName = string.Format("{0}/{1}.bundle", assetBundleName, PathHelper.FileNameWithoutSuffix(Path.GetFileName(assetPath)));
                 }
             }
             else

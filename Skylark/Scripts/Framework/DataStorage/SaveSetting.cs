@@ -24,6 +24,9 @@ namespace Skylark
         public EncryptType EncryptType;
         public bool BAysn;
 
+        public static string m_AESKeyValue = "nfsqyddbhhszd";
+        public static string m_AESIvValue = "bpnmawsdssh";
+
         public SaveSetting(string dataName, string path, EncryptType encryptType = EncryptType.AES)
         {
             DataName = dataName;

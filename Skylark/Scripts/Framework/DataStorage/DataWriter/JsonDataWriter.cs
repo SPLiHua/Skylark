@@ -47,7 +47,7 @@ namespace Skylark
                     case EncryptType.None:
                         break;
                     case EncryptType.AES:
-                        jsonValue = EncryptUtil.AesStr(jsonValue, "nfsqyddbhhszd", "bpnmawsdssh");
+                        jsonValue = EncryptUtil.AesStr(jsonValue, SaveSetting.m_AESKeyValue, SaveSetting.m_AESIvValue);
                         break;
                 }
             }
@@ -64,16 +64,13 @@ namespace Skylark
             {
                 Directory.CreateDirectory(saveSetting.DataPath);
             }
-            if (fileInfo.Exists)
-            {
-                fileInfo.Delete();
-            }
-            else
+            if (!fileInfo.Exists)
             {
                 fileInfo.Create().Dispose();
             }
             using (FileStream fs = fileInfo.OpenWrite())
             {
+                fs.SetLength(0);
                 byte[] writeDataArray = UTF8Encoding.UTF8.GetBytes(jsonValue);
                 fs.Write(writeDataArray, 0, writeDataArray.Length);
                 fs.Flush();
@@ -85,7 +82,7 @@ namespace Skylark
             FileInfo fileInfo1;
             fileInfo1 = new FileInfo(string.Format("{0}/{1}.json", Application.persistentDataPath, saveSetting.DataName));
 
-            if (fileInfo1.Exists)
+            if (!fileInfo1.Exists)
             {
                 fileInfo1.Delete();
             }

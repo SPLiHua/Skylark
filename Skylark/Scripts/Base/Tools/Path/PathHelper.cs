@@ -17,7 +17,7 @@ namespace Skylark
                 return null;
             }
 
-            int endIndex = name.LastIndexOf('.');
+            int endIndex = name.LastIndexOf('/');
             if (endIndex > 0)
             {
                 return name.Substring(0, endIndex);

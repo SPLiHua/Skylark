@@ -14,7 +14,7 @@ namespace Skylark
             ResMgr.S.Init();
             UIDataModule.S.Init();
             //UIMgr.S.OpenPanel(UIID.LoadingPanel);
-            //InitSDK();
+            InitSDK();
         }
 
         private void InitSDK()

@@ -19,9 +19,15 @@ MonoBehaviour:
       isEnable: 1
       isDebugMode: 0
       Priority: 1
-      adParamsList: []
+      adParamsList:
+      - name: 
+        adUnitId_Android: weqwewqee
+        adUnitId_ios: 
+        adType: 2
+        adPosition: 0
+        adInterfaceGroup: 2
       bannerRefreshDuration: 30
-      anyAdUnit: 
+      anyAdUnit: weqwewqee
       androidAppID: 
       iosAppID: 
   dataAnalysisConfig:

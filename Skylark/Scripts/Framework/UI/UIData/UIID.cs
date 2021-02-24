@@ -13,7 +13,7 @@ namespace Skylark
         LoadingPanel,
         GamingPanel,
         RolePanel,
-        GamOverPanel,
+        GameOverPanel,
         TipPanel,
         HomePanel,
         MainPanel,
@@ -24,5 +24,6 @@ namespace Skylark
         ChestOpenPanel,
         PrisonPanel,
         ChestUnlockPanel,
+        ShopPanel,
     }
 }

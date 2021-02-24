@@ -74,7 +74,13 @@ namespace Skylark
                 try
                 {
                     readparm = m_RequestFilePathQueue.Dequeue();
-                    byte[] fileData = FileMgr.S.ReadSync(readparm.filePath);
+
+                    //不做加密读取方式
+                    //byte[] fileData = FileMgr.S.ReadSync(readparm.filePath);
+
+                    //加密后读取方式
+                    byte[] fileData = TableModule.m_DataMap[readparm.tdTableMetaData.TableName];
+
                     readparm.fileData = fileData;
                     bool isReadTxtSuccess = false;
 
