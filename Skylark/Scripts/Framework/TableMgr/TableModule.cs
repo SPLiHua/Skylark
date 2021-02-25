@@ -20,37 +20,11 @@ namespace Skylark
 
         public void Init()
         {
-            HandleTableDataAES();
             InitPreLoadTableMetaData();
             InitDelayLoadTableMetaData();
             m_IsTableLoadFinish = false;
             ApplicationMgr.S.StartCoroutine(TableMgr.S.PreReadAll(HandleTableLoadFinish));
             EventSystem.S.Register(EngineEventID.OnLanguageChange, OnLanguageSwitch);
-        }
-
-        private void HandleTableDataAES()
-        {
-            m_DataMap = new Dictionary<string, byte[]>();
-
-            string content;
-            DirectoryInfo root = new DirectoryInfo(UnityEngine.Application.streamingAssetsPath + "/config");
-            FileInfo[] files = root.GetFiles();
-            foreach (var item in files)
-            {
-                if (item.FullName.Contains("meta"))
-                {
-                    continue;
-                }
-
-                using (StreamReader sr = item.OpenText())
-                {
-                    content = sr.ReadToEnd();
-                    content = EncryptUtil.UnAesStr(content, SaveSetting.m_AESKeyValue, SaveSetting.m_AESIvValue);
-                    byte[] data = System.Text.UTF8Encoding.UTF8.GetBytes(content);
-                    m_DataMap.Add(item.Name.Replace(".txt", ""), data);
-                    sr.Close();
-                }
-            }
         }
 
         protected void HandleTableLoadFinish()
