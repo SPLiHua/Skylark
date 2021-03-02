@@ -8,6 +8,8 @@ namespace Skylark
     {
         MaskPanel,
         FloatMessagePanel,
+        GuideHandPanel,
+        GuideTipPanel,
 
         //FireBaby
         LoadingPanel,

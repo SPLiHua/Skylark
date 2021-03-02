@@ -9,6 +9,27 @@ namespace Skylark
     public class DataAnalysisMgr : Singleton<DataAnalysisMgr>, IAnalysisAdapter
     {
         private Dictionary<string, DataAnalysisAdapter> analysisAdapterDict;
+        public bool m_IsLoadFinish
+        {
+            get
+            {
+                if (analysisAdapterDict != null)
+                {
+                    foreach (var item in analysisAdapterDict.Values)
+                    {
+                        if (!item.InitSuccess)
+                        {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
 
         public void Init()
         {

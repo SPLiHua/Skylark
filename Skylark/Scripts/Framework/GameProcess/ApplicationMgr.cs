@@ -19,7 +19,7 @@ namespace Skylark
 
         private void InitSDK()
         {
-            DataAnalysisMgr.S.Init();
+            //DataAnalysisMgr.S.Init();
             ADMgr.S.Init();
         }
 

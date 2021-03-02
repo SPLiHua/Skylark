@@ -37,8 +37,9 @@ namespace Skylark
             UIDataTable.AddPanelData(UIID.MainPanel, "UI/Prefabs/MainPanel/MainPanel", PanelShowMode.Pop);
 
             UIDataTable.SetABMode(false);
-            UIDataTable.AddPanelData(UIID.MaskPanel, "UI/MaskPanel/MaskPanel");
+            UIDataTable.AddPanelData(UIID.MaskPanel, "MaskPanel");
             UIDataTable.AddPanelData(UIID.FloatMessagePanel, "FloatMessagePanel", PanelShowMode.Pop);
+            UIDataTable.AddPanelData(UIID.GuideTipPanel, "GuideTipPanel");
         }
     }
 }

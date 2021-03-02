@@ -40,6 +40,7 @@ namespace Skylark
         {
             base.OnEnter(param);
             //GameBaseConfig();
+            GuideMgr.S.StartGuideTrack();
             Log.I("Init[{0}]", GamePlayMgr.S.GetType().Name);
             UIMgr.S.OpenPanel(UIID.HomePanel);
             UIMgr.S.OpenPanel(UIID.MainPanel);

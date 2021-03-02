@@ -21,13 +21,13 @@ MonoBehaviour:
       Priority: 1
       adParamsList:
       - name: 
-        adUnitId_Android: weqwewqee
+        adUnitId_Android: 9730747fae41498b8cb6ec3bbe8db485
         adUnitId_ios: 
         adType: 2
         adPosition: 0
         adInterfaceGroup: 2
       bannerRefreshDuration: 30
-      anyAdUnit: weqwewqee
+      anyAdUnit: 9730747fae41498b8cb6ec3bbe8db485
       androidAppID: 
       iosAppID: 
   dataAnalysisConfig:

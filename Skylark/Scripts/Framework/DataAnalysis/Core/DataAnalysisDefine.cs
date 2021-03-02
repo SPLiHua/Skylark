@@ -6,17 +6,23 @@ namespace Skylark
 {
     public class DataAnalysisDefine
     {
-        //玩家死亡
-        public static string Player_Die = "Player_Die";
-        //免费金币
-        // public static string AD_FreeCoin = "AD_Free";
-        //额外金币广告点击
-        public static string AD_ExtraCoin = "AD_Extra";
-        //新纪录
-        public static string New_Record = "New_Record";
-        //冠军奖励
-        public static string Reward_Champion = "Reward_Champion";
-        //成就奖励
-        public static string Reward_Achieve = "Reward_Achieve";
+        //基础技能等级解锁(类型，等级)
+        public static string Attribute_Level = "Attribute_Level";
+
+        //Boss进度
+        public static string Boss_Battle_Win = "Boss_Battle_Win";
+
+        //道具怪等级解锁(类型，等级)
+        public static string Creature_Level = "Creature_Level";
+
+        //玩家通过传送门距离
+        public static string TransDoor_Distance = "TransDoor_Distance";
+
+        //解锁小怪种类
+        public static string PrisonMonster_Type = "PrisonMonster_Type";
+
+        public static string AD_FormalChest = "AD_FormalChest";
+        public static string AD_RoleChest = "AD_RoleChest";
+        public static string AD_Revive = "AD_Revive";
     }
 }

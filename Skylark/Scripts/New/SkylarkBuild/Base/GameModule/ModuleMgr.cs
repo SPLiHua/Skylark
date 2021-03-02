@@ -16,6 +16,7 @@ namespace Skylark
 
             //不需轮询，module
             SequenceNode sequenceNode = new SequenceNode();
+            sequenceNode.Append(DataAnalysisAction.Allocate());
             sequenceNode.Append(EventAction.Allocate(() => { NetworkModule.S.Init(); }));
             sequenceNode.Append(TableAction.Allocate());
             sequenceNode.Append(EventAction.Allocate(() => { GamePersistentData.S.HandleTDData(); }));
