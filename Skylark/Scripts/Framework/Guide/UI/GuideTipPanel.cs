@@ -10,7 +10,7 @@ namespace Skylark
         [SerializeField]
         Text m_TipText;
 
-        public override void OnPanelOpen(params object[] args)
+        protected override void OnPanelOpen(params object[] args)
         {
             if (args != null)
             {

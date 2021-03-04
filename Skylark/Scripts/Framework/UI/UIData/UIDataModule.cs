@@ -40,6 +40,7 @@ namespace Skylark
             UIDataTable.AddPanelData(UIID.MaskPanel, "MaskPanel");
             UIDataTable.AddPanelData(UIID.FloatMessagePanel, "FloatMessagePanel", PanelShowMode.Pop);
             UIDataTable.AddPanelData(UIID.GuideTipPanel, "GuideTipPanel");
+            UIDataTable.AddPanelData(UIID.UIClipPanel, "UIClipPanel");
         }
     }
 }

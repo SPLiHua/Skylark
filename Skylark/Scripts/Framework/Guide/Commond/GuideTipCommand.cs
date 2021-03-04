@@ -27,8 +27,7 @@ namespace Skylark
 
         protected override void OnStart()
         {
-            Log.I("执行");
-            UIMgr.S.OpenPanel(UIID.GuideTipPanel, null, m_Params);
+            UIMgr.S.OpenPanelTop(UIID.GuideTipPanel, m_Params);
         }
 
         protected override void OnFinish(bool forceClean)

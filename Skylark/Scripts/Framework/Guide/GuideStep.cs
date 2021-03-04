@@ -108,8 +108,8 @@ namespace Skylark
                 m_CommandList[i].Finish(true);
             }
 
-            DataAnalysisMgr.S.CustomEvent("Guide", string.Format("Finish_{0}", m_GuideStepID));
             Log.I("#GuideStep Finish:" + m_GuideStepID);
+            DataAnalysisMgr.S.CustomEvent("Guide", string.Format("Finish_{0}", m_GuideStepID));
         }
 
         public void OnCommandFinish()

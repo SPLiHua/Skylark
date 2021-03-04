@@ -14,13 +14,8 @@ namespace Skylark
 
         protected void InitCustomTrigger()
         {
-            // GuideMgr.S.RegisterGuideTrigger(typeof(TaskStartTrigger));
-            // GuideMgr.S.RegisterGuideTrigger(typeof(BossMissTrigger));
-            // GuideMgr.S.RegisterGuideTrigger(typeof(BossCatchTrigger));
-            // GuideMgr.S.RegisterGuideTrigger(typeof(FirstUpgradeTrigger));
-            // GuideMgr.S.RegisterGuideTrigger(typeof(HasFishTrigger));
-            // GuideMgr.S.RegisterGuideTrigger(typeof(UINodeInvisibleTrigger));
-            // GuideMgr.S.RegisterGuideTrigger(typeof(MoneyTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(CanDropTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(CheckPropTrigger));
         }
 
         protected void InitCustomCommand()

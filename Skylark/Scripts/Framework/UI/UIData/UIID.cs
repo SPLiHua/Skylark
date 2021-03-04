@@ -10,6 +10,7 @@ namespace Skylark
         FloatMessagePanel,
         GuideHandPanel,
         GuideTipPanel,
+        UIClipPanel,
 
         //FireBaby
         LoadingPanel,

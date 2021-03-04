@@ -29,8 +29,6 @@ namespace Skylark
             InitGuideCommandFactory();
             InitGuideTriggerFactory();
             InitRuntimeParamFactory();
-            GuideModule guideModule = new GuideModule();
-            guideModule.OnInit();
         }
 
         private void RegisterGuide()
@@ -44,7 +42,7 @@ namespace Skylark
                 }
                 Guide guide = new Guide(data.id);
                 guide.RegisterTrack();
-                m_TrackingGuideList.AddFirst(guide);
+                m_TrackingGuideList.AddLast(guide);
             }
         }
 
@@ -56,7 +54,7 @@ namespace Skylark
                 m_TrackingGuideList.First.Value.StartTrack();
         }
 
-        public void FinishStep(GuideStep step)
+        public void SaveStep(GuideStep step)
         {
             int oldKeyStep = PrefsRecord.S.GetInt(GetLastKeyStepKey(step.guide.guideID));
 
@@ -150,8 +148,10 @@ namespace Skylark
             RegisterGuideCommand(typeof(DelayCommand));
             RegisterGuideCommand(typeof(GuideTipCommand));
             RegisterGuideCommand(typeof(GuideHandCommand));
+            RegisterGuideCommand(typeof(ScreenTouchCommand));
+            RegisterGuideCommand(typeof(UIClipCommand));
+            RegisterGuideCommand(typeof(PauseCommand));
             //RegisterGuideCommand(typeof(PlayAudioCommand));
-            //RegisterGuideCommand(typeof(EventPauseCommand));
             RegisterGuideCommand(typeof(MonoFuncCall));
             RegisterGuideCommand(typeof(OpenPanelCommand));
             RegisterGuideCommand(typeof(ButtonCommand));
@@ -160,7 +160,7 @@ namespace Skylark
         private void InitGuideTriggerFactory()
         {
             //RegisterGuideTrigger(typeof(TopPanelTrigger));
-            //RegisterGuideTrigger(typeof(UINodeVisibleTrigger));
+            RegisterGuideTrigger(typeof(DelayTrigger));
             RegisterGuideTrigger(typeof(EventTrigger));
             RegisterGuideTrigger(typeof(EmptyTrigger));
         }

@@ -42,6 +42,11 @@ namespace Skylark
             set { m_ShowMode = value; }
         }
 
+        public void PanelInit()
+        {
+            OnPanelInit();
+        }
+
         public void PanelOpen(params object[] args)
         {
             gameObject.SetActive(true);
@@ -105,22 +110,22 @@ namespace Skylark
         }
 
         #region //子类重写
-        public virtual void OnPanelInit()
+        protected virtual void OnPanelInit()
         {
 
         }
 
-        public virtual void OnPanelOpen(params object[] args)
+        protected virtual void OnPanelOpen(params object[] args)
         {
 
         }
 
-        public virtual void OnPanelClose()
+        protected virtual void OnPanelClose()
         {
 
         }
         //需要数据清理的时候调用
-        public virtual void DataReset()
+        protected virtual void DataReset()
         {
 
         }

@@ -21,6 +21,11 @@ namespace Skylark
             sequenceNode.Append(TableAction.Allocate());
             sequenceNode.Append(EventAction.Allocate(() => { GamePersistentData.S.HandleTDData(); }));
             sequenceNode.Append(EventAction.Allocate(() => { GameDataMgr.S.Init(); }));
+            sequenceNode.Append(EventAction.Allocate(() =>
+            {
+                GuideModule guideModule = new GuideModule();
+                guideModule.OnInit();
+            }));
             sequenceNode.OnEndedCallback += () => { GetModule<ProcedureManager>().StartProcedure<GamingProcedure>(); };
             ApplicationMgr.S.ExecuteNode(sequenceNode);
         }

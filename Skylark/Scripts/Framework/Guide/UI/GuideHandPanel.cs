@@ -14,7 +14,7 @@ namespace Skylark
         private Vector3 m_OldPos = Vector3.zero;
         private Transform m_Target;
 
-        public override void OnPanelOpen(params object[] args)
+        protected override void OnPanelOpen(params object[] args)
         {
             if (args.Length == 0)
             {

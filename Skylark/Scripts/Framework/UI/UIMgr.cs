@@ -28,7 +28,7 @@ namespace Skylark
             if (!m_AllPanelMap.TryGetValue(uiID, out panel))
             {
                 panel = GetPanel(uiID);
-                panel.OnPanelInit();
+                panel.PanelInit();
                 if (panel == null)
                 {
                     Log.I("No find panel:{0}", uiID.ToString());
@@ -37,6 +37,30 @@ namespace Skylark
             }
             panel.SortIndex = m_UIRoot.RequireNextPanelSortingOrder(panel.ShowMode);
             AdjustSiblingIndex(panel);
+            if (!m_CurrentShowMap.ContainsValue(panel))
+            {
+                m_CurrentShowMap.Add(uiID, panel);
+            }
+            m_CurrentShowList.Add(panel);
+            panel.PanelOpen(args);
+        }
+
+        public void OpenPanelTop(UIID uiID, params object[] args)
+        {
+            AbstractPanel panel = null;
+
+            if (!m_AllPanelMap.TryGetValue(uiID, out panel))
+            {
+                panel = GetPanel(uiID);
+                panel.PanelInit();
+                if (panel == null)
+                {
+                    Log.I("No find panel:{0}", uiID.ToString());
+                    return;
+                }
+            }
+            panel.transform.SetParent(m_UIRoot.TopRoot);
+
             if (!m_CurrentShowMap.ContainsValue(panel))
             {
                 m_CurrentShowMap.Add(uiID, panel);
@@ -105,37 +129,37 @@ namespace Skylark
                 panelData = data as PanelData;
             }
             AbstractPanel panel = null;
-            if (m_AllPanelMap.TryGetValue(uiID, out panel))
+            if (!m_AllPanelMap.TryGetValue(uiID, out panel))
             {
-                return panel;
-            }
-            GameObject panelGo = null;
-            GameObject uiGo = m_UILoader.LoadSync(data.fullPath) as GameObject;
-            if (uiGo != null)
-            {
+                GameObject panelGo = null;
+                GameObject uiGo = m_UILoader.LoadSync(data.fullPath) as GameObject;
                 panelGo = GameObject.Instantiate(uiGo);
                 panel = panelGo.GetComponent<AbstractPanel>();
+                m_AllPanelMap.Add(uiID, panel);
+                panel.uiID = uiID;
+            }
+
+            if (panel != null)
+            {
                 panel.ShowMode = panelData.m_PanelShowMode;
                 switch (panel.ShowMode)
                 {
                     case PanelShowMode.Normal:
-                        panelGo.transform.SetParent(m_UIRoot.NormalRoot);
+                        panel.transform.SetParent(m_UIRoot.NormalRoot);
                         break;
                     case PanelShowMode.Pop:
-                        panelGo.transform.SetParent(m_UIRoot.PopRoot);
+                        panel.transform.SetParent(m_UIRoot.PopRoot);
                         break;
                     case PanelShowMode.HideOther:
-                        panelGo.transform.SetParent(m_UIRoot.NormalRoot);
+                        panel.transform.SetParent(m_UIRoot.NormalRoot);
                         break;
                 }
 
-                panelGo.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
-                panelGo.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
+                panel.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
+                panel.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
                 //panelGo.transform.localRotation = Quaternion.Euler(Vector3.zero);
-                panelGo.transform.localScale = Vector3.one;
-                panelGo.transform.localPosition = Vector3.zero;
-                m_AllPanelMap.Add(uiID, panel);
-                panel.uiID = uiID;
+                panel.transform.localScale = Vector3.one;
+                panel.transform.localPosition = Vector3.zero;
                 return panel;
             }
             return null;

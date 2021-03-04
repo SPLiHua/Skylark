@@ -14,7 +14,7 @@ namespace Skylark
             m_ImgBG = GetComponent<Image>();
         }
 
-        public override void OnPanelOpen(params object[] args)
+        protected override void OnPanelOpen(params object[] args)
         {
             if (args != null && args.Length > 2)
             {

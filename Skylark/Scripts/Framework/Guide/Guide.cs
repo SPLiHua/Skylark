@@ -40,9 +40,10 @@ namespace Skylark
                 return false;
             }
 
+            Log.I("#Guide Start:" + m_GuideID);
+
             m_GuideStepList[m_CurrentGuideIndex].StartTrack();
             m_IsTracking = true;
-            Log.I("#Guide Start:" + m_GuideID);
 
             return true;
         }
@@ -56,15 +57,15 @@ namespace Skylark
 
             m_IsTracking = false;
 
-            if (m_GuideStepList.Count > 0)
-            {
-                for (int i = 0; i < m_GuideStepList.Count; ++i)
-                {
-                    m_GuideStepList[i].FinishTrack();
-                }
+            // if (m_GuideStepList.Count > 0)
+            // {
+            //     for (int i = 0; i < m_GuideStepList.Count; ++i)
+            //     {
+            //         m_GuideStepList[i].FinishTrack();
+            //     }
 
-                m_GuideStepList = null;
-            }
+            //     m_GuideStepList = null;
+            // }
         }
 
         private void RegisterStep()
@@ -90,9 +91,11 @@ namespace Skylark
             if (step.stepID > m_LastFinishStepID)
             {
                 m_LastFinishStepID = step.stepID;
-                GuideMgr.S.FinishStep(step);
+                GuideMgr.S.SaveStep(step);
             }
 
+            Debug.Log("m_LastFinishStepID///////" + m_LastFinishStepID);
+            m_GuideStepList[m_CurrentGuideIndex].FinishTrack();
             TDGuideStep lastStep = TDGuideStepTable.GetGuideLastStep(m_GuideID);
 
             if (lastStep == null || lastStep.id == m_LastFinishStepID || forceFinishAllSteps)
@@ -102,7 +105,6 @@ namespace Skylark
             }
             else
             {
-                m_GuideStepList[m_CurrentGuideIndex].FinishTrack();
                 m_CurrentGuideIndex++;
                 m_GuideStepList[m_CurrentGuideIndex].StartTrack();
             }

@@ -21,7 +21,7 @@ namespace Skylark
                 m_MsgText = GetComponentInChildren<Text>();
         }
 
-        public override void OnPanelOpen(params object[] args)
+        protected override void OnPanelOpen(params object[] args)
         {
             m_MsgText.text = "";
             if (args != null && args.Length > 0)
