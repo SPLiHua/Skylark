@@ -50,7 +50,7 @@ namespace Skylark
             }
 
             Log.I("#GuideStep Start:" + m_GuideStepID);
-            DataAnalysisMgr.S.CustomEvent("Guide", string.Format("Start_{0}", m_GuideStepID));
+            DataAnalysisMgr.S.CustomValueEvent("Guide", m_GuideStepID, string.Format("Start_{0}", m_GuideStepID));
 
             return true;
         }
@@ -109,7 +109,7 @@ namespace Skylark
             }
 
             Log.I("#GuideStep Finish:" + m_GuideStepID);
-            DataAnalysisMgr.S.CustomEvent("Guide", string.Format("Finish_{0}", m_GuideStepID));
+            DataAnalysisMgr.S.CustomValueEvent("Guide", m_GuideStepID, string.Format("Finish_{0}", m_GuideStepID));
         }
 
         public void OnCommandFinish()

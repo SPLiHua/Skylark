@@ -13,7 +13,7 @@ namespace Skylark
             set => m_InitSuccess = value;
         }
 
-        public virtual void CustomEvent(string eventID, string label = null, Dictionary<string, string> dic = null)
+        public virtual void CustomEvent(string eventID)
         {
 
         }
@@ -28,7 +28,7 @@ namespace Skylark
 
         }
 
-        public virtual void CustomValueEvent(string eventID, float value, string label = null, Dictionary<string, string> dic = null)
+        public virtual void CustomValueEvent(string eventID, float value, string label)
         {
 
         }

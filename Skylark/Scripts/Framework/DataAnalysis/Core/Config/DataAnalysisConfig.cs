@@ -9,6 +9,7 @@ namespace Skylark
     {
         public FirebaseDataConfig firebaseDataConfig;
         public FacebookConfig facebookConfig;
+        public AdjustAdapterConfig adjustAdapterConfig;
     }
 
 
@@ -35,5 +36,23 @@ namespace Skylark
                 return "FacebookAnalysisAdapter";
             }
         }
+    }
+
+    [System.Serializable]
+    public class AdjustAdapterConfig : SDKAdapterConfig
+    {
+        public override string adapterClassName
+        {
+            get
+            {
+                return "AdjustAnalysisAdapter";
+            }
+        }
+
+        public string m_AppToken;
+        public com.adjust.sdk.AdjustEnvironment m_AdjustEnvironment;
+        public com.adjust.sdk.AdjustLogLevel m_AdjustLogLevel;
+        public bool m_EventBuffering;
+        public bool m_SendInBackground;
     }
 }

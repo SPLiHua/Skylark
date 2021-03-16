@@ -41,6 +41,7 @@ namespace Skylark
             analysisAdapterDict = new Dictionary<string, DataAnalysisAdapter>();
             RegisterAdapter(config.dataAnalysisConfig.firebaseDataConfig);
             RegisterAdapter(config.dataAnalysisConfig.facebookConfig);
+            RegisterAdapter(config.dataAnalysisConfig.adjustAdapterConfig);
         }
 
         private void RegisterAdapter(SDKAdapterConfig adapterConfig)
@@ -68,11 +69,11 @@ namespace Skylark
             }
         }
 
-        public void CustomEvent(string eventID, string label = null, Dictionary<string, string> dic = null)
+        public void CustomEvent(string eventID)
         {
             foreach (var item in analysisAdapterDict.Values)
             {
-                item.CustomEvent(eventID, label, dic);
+                item.CustomEvent(eventID);
             }
         }
 
@@ -92,11 +93,11 @@ namespace Skylark
             }
         }
 
-        public void CustomValueEvent(string eventID, float value, string label = null, Dictionary<string, string> dic = null)
+        public void CustomValueEvent(string eventID, float value, string label)
         {
             foreach (var item in analysisAdapterDict.Values)
             {
-                item.CustomValueEvent(eventID, value, label, dic);
+                item.CustomValueEvent(eventID, value, label);
             }
         }
     }

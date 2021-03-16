@@ -71,54 +71,16 @@ public class FacebookAnalysisAdapter : DataAnalysisAdapter
     //    parameters: tutParams
     // );
 
-    public override void CustomEvent(string eventID, string label = null, Dictionary<string, string> dic = null)
+    public override void CustomEvent(string eventID)
     {
-        if (dic == null)
-        {
-            Log.I("facebook发送数据：" + eventID);
-            FB.LogAppEvent(eventID);
-            return;
-        }
-        try
-        {
-            List<string> paramKey = new List<string>(dic.Keys);
-            Dictionary<string, object> param = new Dictionary<string, object>();
-            foreach (KeyValuePair<string, string> kvp in dic)
-            {
-                param.Add(kvp.Key, kvp.Value);
-            }
-            FB.LogAppEvent(eventID, 0, param);
-        }
-        catch (Exception e)
-        {
-            if (m_AdapterConfig.isDebugMode)
-                Log.I("Facebook error:" + e);
-        }
+        Log.I("Facebook Send Data：" + eventID);
+        FB.LogAppEvent(eventID);
     }
 
-    public override void CustomValueEvent(string eventID, float value, string label = null, Dictionary<string, string> dic = null)
+    public override void CustomValueEvent(string eventID, float value, string label)
     {
-        if (dic == null)
-        {
-            Log.I("facebook发送数据：" + eventID);
-            FB.LogAppEvent(eventID, value);
-            return;
-        }
-        try
-        {
-            List<string> paramKey = new List<string>(dic.Keys);
-            Dictionary<string, object> param = new Dictionary<string, object>();
-            foreach (KeyValuePair<string, string> kvp in dic)
-            {
-                param.Add(kvp.Key, kvp.Value);
-            }
-            FB.LogAppEvent(eventID, value, param);
-        }
-        catch (Exception e)
-        {
-            if (m_AdapterConfig.isDebugMode)
-                Log.I("Facebook error:" + e);
-        }
+        Log.I("Facebook Send Data：" + eventID);
+        FB.LogAppEvent(eventID, value);
     }
 
     public override void CustomEventDuration(string eventID, long duration)
@@ -128,6 +90,8 @@ public class FacebookAnalysisAdapter : DataAnalysisAdapter
 
     public override void CustomEventDic(string eventID, Dictionary<string, string> dic)
     {
+        Log.I("Facebook Send Data：" + eventID);
+
         try
         {
             List<string> paramKey = new List<string>(dic.Keys);

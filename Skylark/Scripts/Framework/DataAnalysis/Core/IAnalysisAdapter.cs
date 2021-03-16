@@ -6,8 +6,8 @@ namespace Skylark
 {
     public interface IAnalysisAdapter
     {
-        void CustomEvent(string eventID, string label = null, Dictionary<string, string> dic = null);
-        void CustomValueEvent(string eventID, float value, string label = null, Dictionary<string, string> dic = null);
+        void CustomEvent(string eventID);
+        void CustomValueEvent(string eventID, float value, string label);
         void CustomEventDic(string eventId, Dictionary<string, string> dic);
         void CustomEventDuration(string eventID, long duration);
     }

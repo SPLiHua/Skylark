@@ -94,7 +94,7 @@ namespace Skylark
                 GuideMgr.S.SaveStep(step);
             }
 
-            Debug.Log("m_LastFinishStepID///////" + m_LastFinishStepID);
+            Log.I("m_LastFinishStepID///////" + m_LastFinishStepID);
             m_GuideStepList[m_CurrentGuideIndex].FinishTrack();
             TDGuideStep lastStep = TDGuideStepTable.GetGuideLastStep(m_GuideID);
 

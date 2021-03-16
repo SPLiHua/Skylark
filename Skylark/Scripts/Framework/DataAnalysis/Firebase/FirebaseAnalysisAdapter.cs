@@ -48,39 +48,16 @@ public class FirebaseAnalysisAdapter : DataAnalysisAdapter
         return true;
     }
 
-    public override void CustomEvent(string eventID, string label = null, Dictionary<string, string> dic = null)
+    public override void CustomEvent(string eventID)
     {
-        if (dic == null)
-        {
-            Log.I("firebase发送数据：" + eventID);
-            FirebaseAnalytics.LogEvent(eventID, "description", label == null ? "" : label);
-            return;
-        }
-        try
-        {
-            List<string> paramKey = new List<string>(dic.Keys);
-            Parameter[] param = new Parameter[paramKey.Count + 1];
-            for (int i = 0; i < paramKey.Count; i++)
-            {
-                param[i] = new Parameter(paramKey[i], dic[paramKey[i]]);
-            }
-            param[paramKey.Count] = new Parameter("description", label == null ? "" : label);
-            FirebaseAnalytics.LogEvent(eventID, param);
-            paramKey.Clear();
-        }
-        catch (Exception e)
-        {
-            if (m_AdapterConfig.isDebugMode)
-                Log.I("Firebase error:" + e);
-        }
+        Log.I("Firebase Send Data：" + eventID);
+        FirebaseAnalytics.LogEvent(eventID);
     }
 
-    public override void CustomValueEvent(string eventID, float value, string label = null, Dictionary<string, string> dic = null)
+    public override void CustomValueEvent(string eventID, float value, string label)
     {
-        if (dic != null)
-        {
-            CustomEventDic(eventID, dic);
-        }
+        Log.I("Firebase Send Data：" + eventID);
+        FirebaseAnalytics.LogEvent(eventID, label, value);
     }
 
     public override void CustomEventDuration(string eventID, long duration)
@@ -88,8 +65,10 @@ public class FirebaseAnalysisAdapter : DataAnalysisAdapter
 
     }
 
-    public override void CustomEventDic(string eventId, Dictionary<string, string> dic)
+    public override void CustomEventDic(string eventID, Dictionary<string, string> dic)
     {
+        Log.I("Firebase Send Data：" + eventID);
+
         try
         {
             List<string> paramKey = new List<string>(dic.Keys);
@@ -98,7 +77,7 @@ public class FirebaseAnalysisAdapter : DataAnalysisAdapter
             {
                 param[i] = new Parameter(paramKey[i], dic[paramKey[i]]);
             }
-            FirebaseAnalytics.LogEvent(eventId, param);
+            FirebaseAnalytics.LogEvent(eventID, param);
             paramKey.Clear();
         }
         catch (Exception e)
@@ -106,6 +85,5 @@ public class FirebaseAnalysisAdapter : DataAnalysisAdapter
             if (m_AdapterConfig.isDebugMode)
                 Log.I("Firebase error:" + e);
         }
-
     }
 }
