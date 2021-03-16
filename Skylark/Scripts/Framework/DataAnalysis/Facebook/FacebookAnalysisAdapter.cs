@@ -19,7 +19,7 @@ public class FacebookAnalysisAdapter : DataAnalysisAdapter
         {
             // Already initialized, signal an app activation App Event
             FB.ActivateApp();
-            Log.I("FacebookAnalysisAdapter初始化成功");
+            Log.I("FacebookAnalysisAdapter init success");
             InitSuccess = true;
         }
 
@@ -33,7 +33,7 @@ public class FacebookAnalysisAdapter : DataAnalysisAdapter
             // Signal an app activation App Event
             FB.ActivateApp();
             InitSuccess = true;
-            Log.I("FacebookAnalysisAdapter初始化成功");
+            Log.I("FacebookAnalysisAdapter init success");
             // Continue with Facebook SDK
             // ...
         }

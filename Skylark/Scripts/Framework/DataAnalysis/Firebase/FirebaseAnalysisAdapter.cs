@@ -32,7 +32,7 @@ public class FirebaseAnalysisAdapter : DataAnalysisAdapter
                 //FirebaseAnalytics.SetUserId(userid_af);
                 // FirebaseAnalytics.SetUserProperty("userID", "");
                 if (m_AdapterConfig.isDebugMode)
-                    Log.I("FirebaseAnalysisAdapter初始化成功");
+                    Log.I("FirebaseAnalysisAdapter init success");
 
                 InitSuccess = true;
             }

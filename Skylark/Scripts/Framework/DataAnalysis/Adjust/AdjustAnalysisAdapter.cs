@@ -24,6 +24,9 @@ public class AdjustAnalysisAdapter : DataAnalysisAdapter
         // adjustConfig.setSessionFailureDelegate(SessionFailureCallback);
         // adjustConfig.setAttributionChangedDelegate(AttributionChangedCallback);
         Adjust.start(adjustConfig);
+        InitSuccess = true;
+
+        Log.I("AdjustAnalysisAdapter init success");
         return true;
     }
 

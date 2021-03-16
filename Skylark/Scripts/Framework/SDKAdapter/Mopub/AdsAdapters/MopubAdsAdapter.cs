@@ -70,7 +70,7 @@ new MoPub.SupportedNetwork.Unity{},
     private void OnSdkInitializedEvent(string adUnitId)
     {
         // The SDK is initialized here. Ready to make ad requests.
-        Log.I("MopubSDK初始化成功");
+        Log.I("MopubSDK init success.");
         // //参数为你的广告单元Id   临时写法
         // foreach (var item in m_Config.adParamsList)
         // {
