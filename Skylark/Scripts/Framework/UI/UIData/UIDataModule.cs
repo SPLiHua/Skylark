@@ -33,6 +33,7 @@ namespace Skylark
             UIDataTable.AddPanelData(UIID.ChestUnlockPanel, "UI/Prefabs/ChestUnlockPanel/ChestUnlockPanel");
             UIDataTable.AddPanelData(UIID.BasePropertyPanel, "UI/Prefabs/BasePropertyPanel/BasePropertyPanel");
             UIDataTable.AddPanelData(UIID.ShopPanel, "UI/Prefabs/ShopPanel/ShopPanel");
+            UIDataTable.AddPanelData(UIID.BossFightPanel, "UI/Prefabs/BossFightPanel/BossFightPanel");
             UIDataTable.AddPanelData(UIID.ChestOpenPanel, "UI/Prefabs/ChestOpenPanel/ChestOpenPanel", PanelShowMode.Pop);
             UIDataTable.AddPanelData(UIID.MainPanel, "UI/Prefabs/MainPanel/MainPanel", PanelShowMode.Pop);
 
@@ -41,6 +42,7 @@ namespace Skylark
             UIDataTable.AddPanelData(UIID.FloatMessagePanel, "FloatMessagePanel", PanelShowMode.Pop);
             UIDataTable.AddPanelData(UIID.GuideTipPanel, "GuideTipPanel");
             UIDataTable.AddPanelData(UIID.UIClipPanel, "UIClipPanel");
+            UIDataTable.AddPanelData(UIID.GuideHandPanel, "GuideHandPanel");
         }
     }
 }

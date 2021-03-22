@@ -43,7 +43,7 @@ MonoBehaviour:
       isEnable: 1
       isDebugMode: 0
       Priority: 1
-      m_AppToken: TokenTest
+      m_AppToken: 86gncvuyw7wg
       m_AdjustEnvironment: 0
       m_AdjustLogLevel: 2
       m_EventBuffering: 1

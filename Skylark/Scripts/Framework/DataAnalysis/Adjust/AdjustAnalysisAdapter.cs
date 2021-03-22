@@ -69,7 +69,7 @@ public class AdjustAnalysisAdapter : DataAnalysisAdapter
         catch (Exception e)
         {
             if (m_AdapterConfig.isDebugMode)
-                Log.I("Firebase error:" + e);
+                Log.I("Adjust error:" + e);
         }
     }
 

@@ -7,9 +7,7 @@ namespace Skylark
 {
     public class GuideHandCommand : AbstractGuideCommand
     {
-        private IUINodeFinder m_Finder;
-        private bool m_NeedClose = true;
-        private Vector3 m_Offset;
+        private object[] m_Params;
 
         public override void SetParam(object[] pv)
         {
@@ -21,18 +19,7 @@ namespace Skylark
 
             try
             {
-                m_Finder = pv[0] as IUINodeFinder;
-
-                if (pv.Length > 1)
-                {
-                    m_NeedClose = Utility.UtilityTable.String2Bool((string)pv[1]);
-                }
-
-                if (pv.Length > 2)
-                {
-                    m_Offset = Utility.UtilityTable.String2Vector3((string)pv[2], '|');
-                }
-
+                m_Params = pv;
             }
             catch (Exception e)
             {
@@ -42,19 +29,12 @@ namespace Skylark
 
         protected override void OnStart()
         {
-            RectTransform targetNode = m_Finder.FindNode(false) as RectTransform;
-
-            if (targetNode == null)
-            {
-                return;
-            }
-
-            UIMgr.S.OpenPanel(UIID.GuideHandPanel, null, targetNode, m_Offset);
+            UIMgr.S.OpenPanelTop(UIID.GuideHandPanel, m_Params);
         }
 
         protected override void OnFinish(bool forceClean)
         {
-            if (m_NeedClose || forceClean)
+            if (forceClean)
             {
                 UIMgr.S.ClosePanel(UIID.GuideHandPanel);
             }

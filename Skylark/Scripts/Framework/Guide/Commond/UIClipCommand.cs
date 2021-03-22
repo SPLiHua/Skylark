@@ -15,63 +15,38 @@ namespace Skylark
             Square,
         }
 
-        private IUINodeFinder m_Finder;
+        private object[] m_Params;
+
         protected Transform m_TargetButton;
-        private UIClipType m_UIClipType;
-        private string m_PlayAnim = "0";
-        private string m_Raduis = "0";
-        private string m_Offset = "0|0";
-        private string m_Tip;
+        private IUINodeFinder m_Finder;
 
         private bool m_HasDown = false;
         private static List<RaycastResult> m_Result = new List<RaycastResult>();
 
         public override void SetParam(object[] param)
         {
-            if (param == null)
-            {
-                Log.E("UIClipCommand param error");
-            }
-
-            if (param.Length > 0)
+            if (param != null && param.Length > 0)
             {
                 m_Finder = param[0] as IUINodeFinder;
-            }
-            if (param.Length > 1)
-            {
-                string str = param[1].ToString();
-                m_UIClipType = (UIClipType)Enum.Parse(typeof(UIClipType), str);
-            }
-            if (param.Length > 2)
-            {
-                m_PlayAnim = (string)param[2];
-            }
-            if (param.Length > 3)
-            {
-                m_Raduis = (string)param[3];
-            }
-            if (param.Length > 4)
-            {
-                m_Offset = (string)param[4];
-            }
-            if (param.Length > 5)
-            {
-                m_Tip = (string)param[5];
+                m_Params = param;
             }
         }
 
         protected override void OnStart()
         {
-            m_TargetButton = m_Finder.FindNode(false);
-            if (m_TargetButton == null)
+            if (m_Finder != null)
             {
-                Log.E("Can't find targe ui node");
-                return;
+                m_TargetButton = m_Finder.FindNode(false);
             }
+            // if (m_TargetButton == null)
+            // {
+            //     Log.E("Can't find targe ui node");
+            //     return;
+            // }
 
             AppLoopMgr.S.onUpdate += Update;
 
-            UIMgr.S.OpenPanelTop(UIID.UIClipPanel, m_TargetButton, m_UIClipType, m_Raduis, m_Offset, m_PlayAnim, m_Tip);
+            UIMgr.S.OpenPanelTop(UIID.UIClipPanel, m_Params);
         }
 
         protected void Update()

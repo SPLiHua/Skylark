@@ -38,6 +38,7 @@ namespace Skylark
 
         private void OnClickF3()
         {
+            EventSystem.S.Send<GEID>(GEID.Speed2Power, 2);
         }
 
         internal override void Shutdown()

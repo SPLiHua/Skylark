@@ -66,8 +66,8 @@ namespace Skylark
 
         private void OnClickUpOnTarget()
         {
-            FinishStep();
             ExecuteEvents.Execute<IPointerClickHandler>(m_TargetButton.gameObject, new PointerEventData(UnityEngine.EventSystems.EventSystem.current), ExecuteEvents.pointerClickHandler);
+            FinishStep();
         }
 
         private void OnClickDownOnTarget()
@@ -135,6 +135,11 @@ namespace Skylark
             }
 
             return false;
+        }
+
+        protected override void OnFinish(bool forceClean)
+        {
+            AppLoopMgr.S.onUpdate -= Update;
         }
     }
 }

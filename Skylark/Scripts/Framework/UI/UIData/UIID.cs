@@ -28,5 +28,6 @@ namespace Skylark
         PrisonPanel,
         ChestUnlockPanel,
         ShopPanel,
+        BossFightPanel,
     }
 }

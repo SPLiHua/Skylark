@@ -19,7 +19,6 @@ namespace Skylark
             {
                 Log.E(e);
             }
-
         }
 
         public void Start(Action l)

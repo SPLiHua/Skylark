@@ -17,13 +17,13 @@ namespace Skylark
             GuideMgr.S.RegisterGuideTrigger(typeof(CanDropTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(CheckPropTrigger));
             GuideMgr.S.RegisterGuideTrigger(typeof(ChestTrigger));
+            GuideMgr.S.RegisterGuideTrigger(typeof(ChestOpenTrigger));
         }
 
         protected void InitCustomCommand()
         {
             GuideMgr.S.RegisterGuideCommand(typeof(FirePauseCommand));
-            // GuideMgr.S.RegisterGuideCommand(typeof(FasterBoxCommand));
-            // GuideMgr.S.RegisterGuideCommand(typeof(ScreenTouchCommand));
+            GuideMgr.S.RegisterGuideCommand(typeof(AwardCoinCommand));
             // GuideMgr.S.RegisterGuideCommand(typeof(ScrollMoveCommand));
             // GuideMgr.S.RegisterGuideCommand(typeof(HighlightCircleCommand));
             // GuideMgr.S.RegisterGuideCommand(typeof(SpineHandCommand));
