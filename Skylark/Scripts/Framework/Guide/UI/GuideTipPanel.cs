@@ -31,12 +31,39 @@ namespace Skylark
                     {
                         m_Finder = args[2] as IUINodeFinder;
                         Transform targetTrans = m_Finder.FindNode(false);
+                        Vector2 ui1ScreenPos = UIMgr.S.m_UIRoot.UICamera.WorldToScreenPoint(targetTrans.position);
 
-                        m_TipText.transform.parent.parent.localPosition = new Vector3(0, targetTrans.localPosition.y, 0);
-                        m_TipText.transform.parent.parent.localPosition += pos;
+                        Transform topPanel = GetTopParentPanel(targetTrans);
+                        if (topPanel != null)
+                        {
+                            Vector2 localPos;
+                            bool isSucess = RectTransformUtility.ScreenPointToLocalPointInRectangle(topPanel.GetComponent<RectTransform>(), ui1ScreenPos, UIMgr.S.m_UIRoot.UICamera, out localPos);
+                            if (isSucess)
+                            {
+                                Debug.Log("新位置:" + localPos);
+                                m_TipText.transform.parent.parent.localPosition = new Vector3(0, localPos.y, 0);
+                            }
+                            else
+                            {
+                                m_TipText.transform.parent.parent.localPosition = new Vector3(0, targetTrans.localPosition.y, 0);
+                            }
+                            Debug.Log(targetTrans.name + "////////////" + pos);
+                            m_TipText.transform.parent.parent.localPosition += pos;
+                        }
                     }
                 }
             }
+        }
+
+        private Transform GetTopParentPanel(Transform trans)
+        {
+            Transform currentTrans = trans;
+            while (currentTrans != null && !currentTrans.GetComponent<AbstractPanel>())
+            {
+                currentTrans = currentTrans.parent;
+            }
+
+            return currentTrans;
         }
     }
 }

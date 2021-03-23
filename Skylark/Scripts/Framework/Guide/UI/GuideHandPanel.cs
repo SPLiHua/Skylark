@@ -30,7 +30,22 @@ namespace Skylark
                     {
                         m_Finder = args[1] as IUINodeFinder;
                         Transform targetTrans = m_Finder.FindNode(false);
-                        m_HandGo.transform.localPosition = new Vector3(targetTrans.localPosition.x, targetTrans.localPosition.y, 0);
+
+                        Vector2 ui1ScreenPos = UIMgr.S.m_UIRoot.UICamera.WorldToScreenPoint(targetTrans.position);
+                        Transform topPanel = GetTopParentPanel(targetTrans);
+                        if (topPanel != null)
+                        {
+                            Vector2 localPos;
+                            bool isSucess = RectTransformUtility.ScreenPointToLocalPointInRectangle(topPanel.GetComponent<RectTransform>(), ui1ScreenPos, UIMgr.S.m_UIRoot.UICamera, out localPos);
+                            if (isSucess)
+                            {
+                                m_HandGo.transform.localPosition = new Vector3(localPos.x, localPos.y, 0);
+                            }
+                            else
+                            {
+                                m_HandGo.transform.localPosition = new Vector3(targetTrans.localPosition.x, targetTrans.localPosition.y, 0);
+                            }
+                        }
 
                         m_HandGo.transform.localPosition += pos;
                     }
@@ -44,6 +59,17 @@ namespace Skylark
                     .SetEase(Ease.Linear).SetLoops(-1).SetUpdate(true);
                 }
             }
+        }
+
+        private Transform GetTopParentPanel(Transform trans)
+        {
+            Transform currentTrans = trans;
+            while (currentTrans != null && !currentTrans.GetComponent<AbstractPanel>())
+            {
+                currentTrans = currentTrans.parent;
+            }
+
+            return currentTrans;
         }
     }
 }
