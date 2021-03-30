@@ -7,6 +7,8 @@ using System;
 
 public class AdjustAnalysisAdapter : DataAnalysisAdapter
 {
+    private AdjustDefine m_AdjustDefine;
+
     protected override bool AdapterInit(SDKAdapterConfig adapterConfig)
     {
         AdjustAdapterConfig config = (AdjustAdapterConfig)adapterConfig;
@@ -26,23 +28,36 @@ public class AdjustAnalysisAdapter : DataAnalysisAdapter
         Adjust.start(adjustConfig);
         InitSuccess = true;
 
+        m_AdjustDefine = new AdjustDefine();
+        m_AdjustDefine.Init();
+
         Log.I("AdjustAnalysisAdapter init success");
         return true;
     }
 
     public override void CustomEvent(string eventID)
     {
-        Log.I("Adjust Send Data：" + eventID);
-        AdjustEvent adjustEvent = new AdjustEvent(eventID);
-        Adjust.trackEvent(adjustEvent);
+        eventID = m_AdjustDefine.GetValue(eventID);
+
+        if (eventID != null)
+        {
+            Log.I("Adjust Send Data：" + eventID);
+            AdjustEvent adjustEvent = new AdjustEvent(eventID);
+            Adjust.trackEvent(adjustEvent);
+        }
     }
 
     public override void CustomValueEvent(string eventID, float value, string label)
     {
-        Log.I("Adjust Send Data：" + eventID);
-        AdjustEvent adjustEvent = new AdjustEvent(eventID);
-        adjustEvent.setRevenue(value, label);
-        Adjust.trackEvent(adjustEvent);
+        eventID = m_AdjustDefine.GetValue(eventID);
+
+        if (eventID != null)
+        {
+            Log.I("Adjust Send Data：" + eventID);
+            AdjustEvent adjustEvent = new AdjustEvent(eventID);
+            adjustEvent.setRevenue(value, label);
+            Adjust.trackEvent(adjustEvent);
+        }
     }
 
     public override void CustomEventDuration(string eventID, long duration)
@@ -52,24 +67,29 @@ public class AdjustAnalysisAdapter : DataAnalysisAdapter
 
     public override void CustomEventDic(string eventID, Dictionary<string, string> dic)
     {
-        Log.I("Adjust Send Data：" + eventID);
+        eventID = m_AdjustDefine.GetValue(eventID);
 
-        try
+        if (eventID != null)
         {
-            AdjustEvent adjustEvent = new AdjustEvent(eventID);
+            Log.I("Adjust Send Data：" + eventID);
 
-            List<string> paramKey = new List<string>(dic.Keys);
-            for (int i = 0; i < paramKey.Count; i++)
+            try
             {
-                adjustEvent.addPartnerParameter(paramKey[i], dic[paramKey[i]]);
+                AdjustEvent adjustEvent = new AdjustEvent(eventID);
+
+                List<string> paramKey = new List<string>(dic.Keys);
+                for (int i = 0; i < paramKey.Count; i++)
+                {
+                    adjustEvent.addPartnerParameter(paramKey[i], dic[paramKey[i]]);
+                }
+                Adjust.trackEvent(adjustEvent);
+                paramKey.Clear();
             }
-            Adjust.trackEvent(adjustEvent);
-            paramKey.Clear();
-        }
-        catch (Exception e)
-        {
-            if (m_AdapterConfig.isDebugMode)
-                Log.I("Adjust error:" + e);
+            catch (Exception e)
+            {
+                if (m_AdapterConfig.isDebugMode)
+                    Log.I("Adjust error:" + e);
+            }
         }
     }
 

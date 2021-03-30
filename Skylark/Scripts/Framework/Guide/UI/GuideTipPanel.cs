@@ -40,14 +40,12 @@ namespace Skylark
                             bool isSucess = RectTransformUtility.ScreenPointToLocalPointInRectangle(topPanel.GetComponent<RectTransform>(), ui1ScreenPos, UIMgr.S.m_UIRoot.UICamera, out localPos);
                             if (isSucess)
                             {
-                                Debug.Log("新位置:" + localPos);
                                 m_TipText.transform.parent.parent.localPosition = new Vector3(0, localPos.y, 0);
                             }
                             else
                             {
                                 m_TipText.transform.parent.parent.localPosition = new Vector3(0, targetTrans.localPosition.y, 0);
                             }
-                            Debug.Log(targetTrans.name + "////////////" + pos);
                             m_TipText.transform.parent.parent.localPosition += pos;
                         }
                     }

@@ -32,7 +32,7 @@ namespace Skylark
 
         protected override void OnFinish(bool forceClean)
         {
-            if (forceClean)
+            //if (forceClean)
             {
                 UIMgr.S.ClosePanel(UIID.GuideTipPanel);
             }
